@@ -58,3 +58,8 @@ a.navbar-item:hover{
   color: white;
   margin-left: 5px;
 }
+
+.menu-left ul li a:hover{
+  background-color: rgb(218, 106, 32);
+  color: white;
+}
