@@ -5,6 +5,14 @@
   background-position: bottom -35px right;
 }
 
+.navbar-dashboard{
+  background-color: black;
+}
+
+.navbar-dashboard a{
+  color: white;
+}
+
 .degradee-initial{
   /* background-image: linear-gradient(to bottom right, white, #302619); */
 }
@@ -28,6 +36,25 @@ a.navbar-item:hover{
   color: #F0690E;
 }
 
+.footer{
+  margin-top: -12px;
+}
+
 .footer a:hover{
   color: #295bac;
+}
+
+.menu-left{
+  min-height: 70vh;
+  background-color: #2b2e3b;
+}
+
+.menu-left p{
+  color: white;
+  margin-left: 5px;
+}
+
+.menu-left ul li a{
+  color: white;
+  margin-left: 5px;
 }
