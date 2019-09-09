@@ -1,0 +1,32 @@
+.is-home-page{
+  background-image: url(../img/mascote.png);
+  background-repeat: no-repeat;
+  background-size: 70vh auto;
+  background-position: bottom right;
+}
+
+.degradee-initial{
+  /* background-image: linear-gradient(to bottom right, white, #302619); */
+}
+
+.is-bg-orange{
+  background-color: #F0690E;
+}
+
+.is-bg-orange-outlined{
+  border-color: #F0690E;
+  color: #F0690E;
+}
+
+.is-bg-orange-outlined:hover{
+  background-color: #F0690E;
+  color: white;
+}
+
+a.navbar-item:hover{
+  color: #F0690E;
+}
+
+.footer a:hover{
+  color: #295bac;
+}
