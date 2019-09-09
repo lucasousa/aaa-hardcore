@@ -2,7 +2,7 @@
   background-image: url(../img/mascote.png);
   background-repeat: no-repeat;
   background-size: 70vh auto;
-  background-position: bottom right;
+  background-position: bottom -35px right;
 }
 
 .degradee-initial{
