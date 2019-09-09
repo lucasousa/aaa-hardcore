@@ -19,7 +19,7 @@ Create your branch in your terminal/computer and send it to the main project. On
 Requirements
 Python >= 3.6
 Of use
-Clone the github project (git clone https://github.com/gabrielloliveira/aaa.git) or make a fork
+Clone the github project (git clone https://github.com/lucasousa/aaa-engenharia.git) or make a fork
 
 Enter the folder that has just been created (cd aaa/)
 
