@@ -2,7 +2,7 @@
 
 This is an platform for manegement of any AAA's. (README under construction...)
 
-Link for [UML Diagram](https://drive.google.com/open?id=1Vc8qHmkaq_GKW4_JuVtJfXj7EUh0nGzu)
+Link for [UML Diagram](https://www.draw.io/?state=%7B%22ids%22:%5B%221dtpP6MSkNoDrZnQmgezmx-DImkRNRsJg%22%5D,%22action%22:%22open%22,%22userId%22:%22100061445533958635471%22%7D)
 
 ## From the rules
 
