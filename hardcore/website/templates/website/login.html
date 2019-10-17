@@ -9,7 +9,11 @@
       <div class="column is-4 is-offset-4">
         <div class="box">
           <form action="" method="post">
+            {% csrf_token %}
             <p class="is-size-3">Login</p>
+            {% if message %}
+            <p class="is-size-4 {{ class }}">{{ message }}</p>
+            {% endif %}
             <div class="field">
               <label class="label">Email</label>
               <div class="control has-icons-left has-icons-right">
