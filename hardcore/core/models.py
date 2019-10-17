@@ -12,11 +12,11 @@ class Profile(models.Model):
         ('M', 'Masculino'),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=255, blank=False, null=False, default='Anônimo')
-    course_name = models.CharField(max_length=255, blank=False, null=False, default='')
-    cpf = models.CharField(max_length=14, blank=False, null=False, default='')
-    date_birth = models.DateField(blank=False, null=False, default=timezone.now)
-    sex = models.CharField(max_length=1, choices=SEX_CHOICES, blank=False, null=False, default='M')
+    full_name = models.CharField('Nome completo', max_length=255, blank=False, null=False, default='Anônimo')
+    course_name = models.CharField('Nome do curso', max_length=255, blank=False, null=False, default='')
+    cpf = models.CharField('CPF', max_length=14, blank=False, null=False, default='')
+    date_birth = models.DateField('Data de nascimento', blank=False, null=False, default=timezone.now)
+    sex = models.CharField('Sexo', max_length=1, choices=SEX_CHOICES, blank=False, null=False, default='M')
 
     @property
     def age(self):
