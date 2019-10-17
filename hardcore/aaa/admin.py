@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Aaa
+from .models import AAA
 
-admin.site.register(Aaa)
+
+
+admin.site.register(AAA)

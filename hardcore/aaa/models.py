@@ -4,14 +4,20 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 
-class Aaa(models.Model):
-    name = models.CharField(max_length=255, blank=False, null=False)
-    created_data = models.DateTimeField(default=timezone.now)
-    logo = models.CharField(max_length=255, blank=False, null=False)
-    value_association = models.DecimalField(decimal_places=2, max_digits=8)
+class AAA(models.Model):
+    name = models.CharField('Nome da AAA',max_length=255, blank=False, null=False)
+    created_data = models.DateTimeField('Data de criação',default=timezone.now)
+    logo = models.ImageField()
+    value_association = models.DecimalField('Valor da associação',decimal_places=2, max_digits=8)
 
+    @property
     def qtd_members(self):
         pass
+
+    class Meta:
+        verbose_name = 'AAA'
+        verbose_name_plural = 'AAAs'
+        ordering = ['name']
 
     def __str__(self):
         return self.name
