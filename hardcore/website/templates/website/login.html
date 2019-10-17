@@ -27,25 +27,16 @@
             <div class="field">
               <label class="label">Senha</label>
               <div class="control has-icons-left has-icons-right">
-                <input class="input" type="text" placeholder="senhasenha" name="password">
+                <input class="input" type="password" placeholder="********" name="password">
                 <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>
               </div>
             </div>
-            
-            <div class="field">
-              <div class="control">
-                <label class="checkbox">
-                  <input type="checkbox" name="terms-conditions">
-                  Eu aceito os <a href="#">termos de condições</a>
-                </label>
-              </div>
-            </div>
 
             <div class="field">
               <p class="control">
-                É novo? <a href="#">Cadastre-se aqui.</a>
+                É novo? <a href="{% url 'website:signup' %}">Cadastre-se aqui.</a>
               </p>
             </div>
             
