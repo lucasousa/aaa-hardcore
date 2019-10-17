@@ -37,6 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #local
+    'aaa',
+    'association',
+    'core',
+    'director',
+    'notice',
+    'partner',
+    'product',
 ]
 
 MIDDLEWARE = [
@@ -62,15 +71,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                #nossos
-                'aaa',
-                'association',
-                'core',
-                'director',
-                'notice',
-                'partner',
-                'product',
             ],
         },
     },
