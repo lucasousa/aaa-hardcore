@@ -14,7 +14,7 @@ class Profile(models.Model):
     course_name = models.CharField(max_length=255, blank=False, null=False)
     cpf = models.CharField(max_length=14, blank=False, null=False)
     date_birth = models.DateField(blank=False, null=False)
-    sex = models.CharField(max_length=1, blank=False, null=False)
+    sex = models.CharField(max_length=1, choices=SEX_CHOICES, blank=False, null=False)
 
     @property
     def age(self):
