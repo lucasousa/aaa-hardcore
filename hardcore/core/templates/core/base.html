@@ -1,19 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Home | AAA HardCore</title>
-  <link rel="stylesheet" href="static/css/bulma.css">
-  <link rel="stylesheet" href="static/css/main.css">
-  <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
+  <title>{% block title %}{% endblock %} | AAA HardCore</title>
+  <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
 </head>
 <body>
 
   <nav class="navbar navbar-dashboard" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
+      <a class="navbar-item" href="{% url 'core:index' %}">
         < AAA HardCore />
       </a>
   
@@ -50,7 +51,7 @@
         </p>
         <ul class="menu-list">
           <li>
-            <a class="is-bg-orange" href="./dashboard.html">
+            <a class="is-bg-orange" href="{% url 'core:index' %}">
               <span class="icon">
                 <i class="fas fa-home"></i>
               </span>
@@ -60,7 +61,7 @@
             </a>
           </li>
           <li>
-            <a href="./manage-partner.html">
+            <a href="{% url 'partner:index' %}">
               <span class="icon">
                 <i class="fas fa-handshake"></i>
               </span>
@@ -105,40 +106,8 @@
     </div>
     <div class="column">
       <div class="container">
-        <section class="section">
-          <div class="container">
-            <h1 class="title">Bem vindo João da Silva!</h1>
-            <h2 class="subtitle">
-              Este é o seu paínel como <strong>diretor</strong> da atlética.
-            </h2>
-            <div class="columns">
-              <div class="column">
-                <div class="box notification is-link">
-                  <div class="heading">Quantidade de sócios</div>
-                  <div class="title">
-                    64
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="box notification is-info">
-                  <div class="heading">Quantidade de notícias</div>
-                  <div class="title">
-                    4
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="box notification is-primary">
-                  <div class="heading">Quantidade de parceiros</div>
-                  <div class="title">
-                    5
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {% block content %}
+        {% endblock %}
       </div>
     </div>
   </div>
@@ -156,3 +125,4 @@
 
 </body>
 </html>
+{% load static %}
