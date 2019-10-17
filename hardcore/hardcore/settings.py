@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'notice',
     'partner',
     'product',
+    'website',
 ]
 
 MIDDLEWARE = [
