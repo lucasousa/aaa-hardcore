@@ -106,3 +106,5 @@ venv.bak/
 .DS_Store
 
 .vscode/
+
+media_images/
