@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from datetime import date
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Profile(models.Model):
@@ -11,10 +12,11 @@ class Profile(models.Model):
         ('M', 'Masculino'),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    course_name = models.CharField(max_length=255, blank=False, null=False)
-    cpf = models.CharField(max_length=14, blank=False, null=False)
-    date_birth = models.DateField(blank=False, null=False)
-    sex = models.CharField(max_length=1, choices=SEX_CHOICES, blank=False, null=False)
+    full_name = models.CharField(max_length=255, blank=False, null=False, default='Anônimo')
+    course_name = models.CharField(max_length=255, blank=False, null=False, default='')
+    cpf = models.CharField(max_length=14, blank=False, null=False, default='')
+    date_birth = models.DateField(blank=False, null=False, default=timezone.now)
+    sex = models.CharField(max_length=1, choices=SEX_CHOICES, blank=False, null=False, default='M')
 
     @property
     def age(self):
