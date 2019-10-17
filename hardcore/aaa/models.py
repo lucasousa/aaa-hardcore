@@ -6,9 +6,9 @@ from django.utils import timezone
 
 class AAA(models.Model):
     name = models.CharField('Nome da AAA',max_length=255, blank=False, null=False)
-    created_data = models.DateTimeField('Data de criação',default=timezone.now)
+    created_data = models.DateField('Data de criação',blank=False, null=False, default=timezone.now)
     logo = models.ImageField()
-    value_association = models.DecimalField('Valor da associação',decimal_places=2, max_digits=8)
+    value_association = models.DecimalField('Valor da associação',decimal_places=2, max_digits=8, blank=False, null=False )
 
     @property
     def qtd_members(self):
