@@ -11,6 +11,7 @@ class Profile(models.Model):
         ('M', 'Masculino'),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=255, blank=False, null=False, default='Anônimo')
     course_name = models.CharField(max_length=255, blank=False, null=False)
     cpf = models.CharField(max_length=14, blank=False, null=False)
     date_birth = models.DateField(blank=False, null=False)
