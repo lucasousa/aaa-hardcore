@@ -1,0 +1,130 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block hero %}
+<div class="hero-body">
+  <div class="container has-text-centered">
+    <div class="columns">
+      <div class="column is-4 is-offset-4">
+        <div class="box">
+          <form action="" method="post">
+            {% csrf_token %}
+            <p class="is-size-3">Cadastro</p>
+            {% if message %}
+            <p class="is-size-6 {{ class }}">{{ message }}</p>
+            {% endif %}
+            <div class="field">
+              <label class="label">Nome completo</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="text" placeholder="Ex.: João da Silva" name="name">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="text" placeholder="exemplo@email.com" name="email">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="label">Senha</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="password" placeholder="******" name="password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Curso que você faz</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="text" placeholder="Ex.: Sistemas de Informação" name="course">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-university"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">CPF</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="text" placeholder="Seu CPF" name="cpf" id="cpf">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-id-card"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Data de Nascimento</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="date" placeholder="" name="birth-date">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-birthday-cake"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Sexo</label>
+              <div class="control has-icons-left has-icons-right">
+                <div class="control">
+                  <label class="radio">
+                    <input type="radio" name="sex" value="F">
+                    Feminino
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="sex" value="M">
+                    Masculino
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input type="checkbox" name="terms-conditions">
+                  Eu aceito os <a href="#">termos de condições</a>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <p class="control">
+                Já se cadastrou? <a href="{% url 'website:login' %}">Faça Login aqui.</a>
+              </p>
+            </div>
+            
+            <div class="field">
+              <div class="control">
+                <button class="button is-bg-orange">Cadastrar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+<script>
+  $(document).ready(function(){
+    $('#cpf').mask('000.000.000-00', {reverse: true});
+  });
+</script>
+{% endblock %}
