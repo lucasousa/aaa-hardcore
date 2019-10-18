@@ -12,7 +12,7 @@
         <form action="" method="get">
           <div class="field has-addons">
             <div class="control is-expanded">
-              <input type="text" class="input" placeholder="Digite o nome do parceiro">
+              <input name="busca" type="text" class="input" placeholder="Digite o nome do parceiro">
             </div>
             <div class="control">
               <button type="submit" class="button is-link">
@@ -31,7 +31,7 @@
 
     <div class="columns">
       <div class="column">
-        <a href="" class="button is-link">
+        <a href="{% url 'partner:add' %}" class="button is-link">
           Adicionar um novo parceiro
         </a>
       </div>
@@ -48,9 +48,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Made In Piauí</td>
+           {% for x in objetos %}
+           <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{x.name}}</td>
               <td>
                 <a href="" class="button is-warning">
                   <span class="icon">
@@ -70,94 +71,7 @@
                 </a>
               </td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Academia Sport</td>
-              <td>
-                <a href="" class="button is-warning">
-                  <span class="icon">
-                    <i class="fas fa-edit"></i>
-                  </span>
-                  <span>
-                    Editar
-                  </span>
-                </a>
-                <a href="" class="button is-danger">
-                  <span class="icon">
-                    <i class="fas fa-trash-alt"></i>
-                  </span>
-                  <span>
-                    Excluir
-                  </span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Que seja Doce</td>
-              <td>
-                <a href="" class="button is-warning">
-                  <span class="icon">
-                    <i class="fas fa-edit"></i>
-                  </span>
-                  <span>
-                    Editar
-                  </span>
-                </a>
-                <a href="" class="button is-danger">
-                  <span class="icon">
-                    <i class="fas fa-trash-alt"></i>
-                  </span>
-                  <span>
-                    Excluir
-                  </span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Apetitoso Pizzaria</td>
-              <td>
-                <a href="" class="button is-warning">
-                  <span class="icon">
-                    <i class="fas fa-edit"></i>
-                  </span>
-                  <span>
-                    Editar
-                  </span>
-                </a>
-                <a href="" class="button is-danger">
-                  <span class="icon">
-                    <i class="fas fa-trash-alt"></i>
-                  </span>
-                  <span>
-                    Excluir
-                  </span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Geek Taverna</td>
-              <td>
-                <a href="" class="button is-warning">
-                  <span class="icon">
-                    <i class="fas fa-edit"></i>
-                  </span>
-                  <span>
-                    Editar
-                  </span>
-                </a>
-                <a href="" class="button is-danger">
-                  <span class="icon">
-                    <i class="fas fa-trash-alt"></i>
-                  </span>
-                  <span>
-                    Excluir
-                  </span>
-                </a>
-              </td>
-            </tr>
+           {% endfor %}
           </tbody>
         </table>
       </div>
