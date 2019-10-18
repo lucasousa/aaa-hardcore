@@ -27,18 +27,21 @@
   
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-danger">
-              <span class="icon">
-                <i class="fas fa-sign-in-alt"></i>
-              </span>
-              <span>
-                Sair
-              </span>
-            </a>
+        <form action="{% url 'core:logout_user' %}" method="post">
+          {% csrf_token %}
+          <div class="navbar-item">
+            <div class="buttons">
+              <button class="button is-danger">
+                <span class="icon">
+                  <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>
+                  Sair
+                </span>
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </nav>
