@@ -31,7 +31,7 @@
 
     <div class="columns">
       <div class="column">
-        <a href="{% url 'partner:add' %}" class="button is-link">
+        <a href="{% url 'association:add' %}" class="button is-link">
           Adicionar um novo sócio
         </a>
       </div>
@@ -51,17 +51,9 @@
            {% for x in objetos %}
            <tr>
               <td>{{forloop.counter}}</td>
-              <td>{{x.name}}</td>
+              <td>{{x.user.profile.full_name}}</td>
               <td>
-                <a href="{% url 'partner:edit' x.id %}" class="button is-warning">
-                  <span class="icon">
-                    <i class="fas fa-edit"></i>
-                  </span>
-                  <span>
-                    Editar
-                  </span>
-                </a>
-                <a href="{% url 'partner:deletar' x.id %}" class="button is-danger">
+                <a href="{% url 'association:deletar' x.id %}" class="button is-danger">
                   <span class="icon">
                     <i class="fas fa-trash-alt"></i>
                   </span>
