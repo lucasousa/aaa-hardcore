@@ -84,7 +84,7 @@
             </a>
           </li>
           <li>
-            <a>
+            <a {% if request.resolver_match.app_name == 'product' %}class="is-bg-orange"{% endif %}href="{% url 'product:index' %}">
               <span class="icon">
                 <i class="fas fa-box-open"></i>
               </span>

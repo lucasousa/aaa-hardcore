@@ -48,30 +48,6 @@
             </tr>
           </thead>
           <tbody>
-              {% for x in objetos %}
-           <tr>
-              <td>{{forloop.counter}}</td>
-              <td>{{x.name}}</td>
-              <td>
-                <a href="{% url 'product:edit' x.id %}" class="button is-warning">
-                  <span class="icon">
-                    <i class="fas fa-edit"></i>
-                  </span>
-                  <span>
-                    Editar
-                  </span>
-                </a>
-                <a href="" class="button is-danger">
-                  <span class="icon">
-                    <i class="fas fa-trash-alt"></i>
-                  </span>
-                  <span>
-                    Excluir
-                  </span>
-                </a>
-              </td>
-            </tr>
-           {% endfor %}
           </tbody>
         </table>
       </div>
