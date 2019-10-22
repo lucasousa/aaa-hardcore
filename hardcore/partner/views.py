@@ -25,7 +25,7 @@ def edit(request, id):
     if request.POST:
         description = request.POST['description']
         name = request.POST['name']
-        partner = Partner.objects.get(id =id)
+        partner = Partner.objects.get(id=id)
         partner.name = name
         partner.description = description
         partner.save()
