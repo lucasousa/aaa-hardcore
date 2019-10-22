@@ -1,18 +1,18 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Gerenciar product{% endblock %}
+{% block title %}Gerenciar produtos{% endblock %}
 
 {% block content %}
 <section class="section">
   <div class="container">
-    <h1 class="title">Gerenciar Parceiros</h1>
+    <h1 class="title">Gerenciar Produtos</h1>
     
     <div class="columns">
       <div class="column">
         <form action="" method="get">
           <div class="field has-addons">
             <div class="control is-expanded">
-              <input name="busca" type="text" class="input" placeholder="Digite o nome do parceiro">
+              <input name="busca" type="text" class="input" placeholder="Digite o nome do produto">
             </div>
             <div class="control">
               <button type="submit" class="button is-link">
@@ -31,8 +31,8 @@
 
     <div class="columns">
       <div class="column">
-        <!-- <a href="{% url 'partner:add' %}" class="button is-link"> -->
-          Adicionar um novo parceiro
+        <a href="" class="button is-link">
+          Adicionar um novo produto
         </a>
       </div>
     </div>
@@ -48,6 +48,30 @@
             </tr>
           </thead>
           <tbody>
+              {% for x in objetos %}
+           <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{x.name}}</td>
+              <td>
+                <a href="" class="button is-warning">
+                  <span class="icon">
+                    <i class="fas fa-edit"></i>
+                  </span>
+                  <span>
+                    Editar
+                  </span>
+                </a>
+                <a href="" class="button is-danger">
+                  <span class="icon">
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
+                  <span>
+                    Excluir
+                  </span>
+                </a>
+              </td>
+            </tr>
+           {% endfor %}
           </tbody>
         </table>
       </div>
