@@ -54,7 +54,7 @@
         </p>
         <ul class="menu-list">
           <li>
-            <a class="is-bg-orange" href="{% url 'core:index' %}">
+            <a {% if request.resolver_match.app_name == 'core' %}class="is-bg-orange"{% endif %} href="{% url 'core:index' %}">
               <span class="icon">
                 <i class="fas fa-home"></i>
               </span>
@@ -64,7 +64,7 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'partner:index' %}">
+            <a href="{% url 'partner:index' %}"{% if request.resolver_match.app_name == 'partner' %}class="is-bg-orange"{% endif %}>
               <span class="icon">
                 <i class="fas fa-handshake"></i>
               </span>
