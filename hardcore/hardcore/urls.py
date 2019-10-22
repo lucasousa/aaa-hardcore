@@ -24,4 +24,5 @@ urlpatterns = [
     path('core/', include('core.urls', namespace='core')),
     path('partner/', include('partner.urls', namespace='partner')),
     path('notice/', include('notice.urls', namespace='notice')),
+    path('product/',include('product.urls', namespace='product')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
