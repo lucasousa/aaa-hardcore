@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Gerenciar Notícias{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Gerenciar Notícias</h1>
+    
+    <div class="columns">
+      <div class="column">
+        <form action="" method="get">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input name="busca" type="text" class="input" placeholder="Digite o título da notícia">
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-link">
+                <span class="icon">
+                  <i class="fas fa-search"></i>
+                </span>
+                <span>
+                  Pesquisar
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <a href="{% url 'notice:new_notice' %}" class="button is-link">
+          Adicionar uma nova notícia
+        </a>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <table class="table is-fullwidth is-narrow">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Opções</th>
+            </tr>
+          </thead>
+          <tbody>
+           {% for x in objetos %}
+           <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{x.title}}</td>
+              <td>
+                <a href="" class="button is-warning">
+                  <span class="icon">
+                    <i class="fas fa-edit"></i>
+                  </span>
+                  <span>
+                    Editar
+                  </span>
+                </a>
+                <a href="" class="button is-danger">
+                  <span class="icon">
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
+                  <span>
+                    Excluir
+                  </span>
+                </a>
+              </td>
+            </tr>
+           {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+      
