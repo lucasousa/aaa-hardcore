@@ -7,6 +7,8 @@ from django.urls import reverse
 
 def index(request):
     object_list = Partner.objects.all()
+    if("busca" in request.GET):
+        object_list = object_list.filter(name__icontains=request.GET["busca"])
     return render(request, 'partner/manage-partner.html', {'objetos':object_list})
 
 def add(request):
