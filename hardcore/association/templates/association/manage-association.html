@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Gerenciar Sócios{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Gerenciar Sócios</h1>
+    
+    <div class="columns">
+      <div class="column">
+        <form action="" method="get"> {% csrf_token %}
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input name="busca" type="text" class="input" placeholder="Digite o nome do parceiro">
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-link">
+                <span class="icon">
+                  <i class="fas fa-search"></i>
+                </span>
+                <span>
+                  Pesquisar
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <a href="{% url 'partner:add' %}" class="button is-link">
+          Adicionar um novo sócio
+        </a>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <table class="table is-fullwidth is-narrow">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Opções</th>
+            </tr>
+          </thead>
+          <tbody>
+           {% for x in objetos %}
+           <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{x.name}}</td>
+              <td>
+                <a href="{% url 'partner:edit' x.id %}" class="button is-warning">
+                  <span class="icon">
+                    <i class="fas fa-edit"></i>
+                  </span>
+                  <span>
+                    Editar
+                  </span>
+                </a>
+                <a href="{% url 'partner:deletar' x.id %}" class="button is-danger">
+                  <span class="icon">
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
+                  <span>
+                    Excluir
+                  </span>
+                </a>
+              </td>
+            </tr>
+           {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
