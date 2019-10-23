@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Partner
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+ 
 
 # Create your views here.
 
@@ -25,7 +25,7 @@ def edit(request, id):
     if request.POST:
         description = request.POST['description']
         name = request.POST['name']
-        partner = Partner.objects.get(id =id)
+        partner = Partner.objects.get(id=id)
         partner.name = name
         partner.description = description
         partner.save()

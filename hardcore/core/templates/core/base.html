@@ -84,7 +84,7 @@
             </a>
           </li>
           <li>
-            <a>
+            <a {% if request.resolver_match.app_name == 'product' %}class="is-bg-orange"{% endif %}href="{% url 'product:index' %}">
               <span class="icon">
                 <i class="fas fa-box-open"></i>
               </span>
@@ -94,7 +94,7 @@
             </a>
           </li>
           <li>
-            <a>
+            <a href="{% url 'association:index' %}"{% if request.resolver_match.app_name == 'association' %}class="is-bg-orange"{% endif %}>
               <span class="icon">
                 <i class="fas fa-users"></i>
               </span>
