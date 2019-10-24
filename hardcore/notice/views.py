@@ -7,8 +7,9 @@ from django.urls import reverse
 
 def index(request):
     object_list = Notice.objects.all() #Pegando todas as notícias do banco de dados
+    if("busca" in request.GET):
+        object_list = object_list.filter(title__icontains=request.GET["busca"])
     return render(request, 'notice/manage_notice.html', {'objetos':object_list})
-
 
 def new_notice(request):
     if request.POST:
