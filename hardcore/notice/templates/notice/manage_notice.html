@@ -6,7 +6,6 @@
 <section class="section">
   <div class="container">
     <h1 class="title">Gerenciar Notícias</h1>
-    
     <div class="columns">
       <div class="column">
         <form action="" method="get">
@@ -39,6 +38,7 @@
 
     <div class="columns">
       <div class="column">
+        {% if objetos %}
         <table class="table is-fullwidth is-narrow">
           <thead>
             <tr>
@@ -69,14 +69,26 @@
                     Excluir
                   </span>
                 </a>
+                <a href="" class="button is-info">
+                  <span class="icon">
+                    <i class="fas fa-eye"></i>
+                  </span>
+                  <span>
+                    Visualizar
+                  </span>
+                </a>
               </td>
             </tr>
            {% endfor %}
+          {% else %}
+            <td>
+              <h5>Nenhuma notícia encontrada.</h5>
+            </td>
+          {% endif %}
           </tbody>
         </table>
       </div>
     </div>
-
   </div>
 </section>
 {% endblock %}
