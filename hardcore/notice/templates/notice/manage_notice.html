@@ -48,12 +48,12 @@
             </tr>
           </thead>
           <tbody>
-           {% for x in objetos %}
+           {% for aux in objetos %}
            <tr>
               <td>{{forloop.counter}}</td>
-              <td>{{x.title}}</td>
+              <td>{{aux.title}}</td>
               <td>
-                <a href="" class="button is-warning">
+                <a href="{% url 'notice:edit_notice' aux.id %}" class="button is-warning">
                   <span class="icon">
                     <i class="fas fa-edit"></i>
                   </span>
@@ -61,7 +61,7 @@
                     Editar
                   </span>
                 </a>
-                <a href="" class="button is-danger">
+                <a href="{% url 'notice:delete_notice' aux.id %}" class="button is-danger">
                   <span class="icon">
                     <i class="fas fa-trash-alt"></i>
                   </span>
