@@ -74,7 +74,7 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'notice:index' %}">
+            <a href="{% url 'notice:index' %}" {% if request.resolver_match.app_name == 'notice' %} class="is-bg-orange" {% endif %}>
               <span class="icon">
                 <i class="fas fa-file-alt"></i>
               </span>
