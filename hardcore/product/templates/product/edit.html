@@ -1,55 +1,60 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Gerenciar produtos{% endblock %}
+{% block title %}Editar Parceiros{% endblock %}
 
 {% block content %}
 <section class="section">
   <div class="container">
-    <h1 class="title">Gerenciar Produtos</h1>
-    
+    <h1 class="title">Editar Produto</h1> 
+
     <div class="columns">
       <div class="column">
-        <form action="" method="get">
-          <div class="field has-addons">
-            <div class="control is-expanded">
-              <input name="busca" type="text" class="input" placeholder="Digite o nome do produto">
-            </div>
-            <div class="control">
-              <button type="submit" class="button is-link">
-                <span class="icon">
-                  <i class="fas fa-search"></i>
-                </span>
-                <span>
-                  Pesquisar
-                </span>
-              </button>
-            </div>
+        <div class="container">
+          <div class="box">
+            <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+              <div class="field">
+                <label class="label">Nome:</label>
+                <div class="control">
+                  <input class="input" type="text" name="name" placeholder="Ex.: Barraca do seu joão" value="{{objeto.name}}">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Logo:</label>
+                <div class="file is-info">
+                  <label class="file-label">
+                    <input class="file-input" type="file" name="logo">
+                    <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">
+                        Escolha um arquivo…
+                      </span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+              
+              <div class="field">
+                <label class="label">Descrição</label>
+                <div class="control">
+                  <textarea class="textarea" placeholder="Digite uma breve descrição do parceiro" name="description">{{objeto.description}}</textarea>
+                </div>
+              </div>
+              
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link">Editar</button>
+                </div>
+                <div class="control">
+                  <a href="{% url 'partner:index' %}" class="button is-warning">Cancelar</a>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="columns">
-      <div class="column">
-        <a href="" class="button is-link">
-          Adicionar um novo produto
-        </a>
-      </div>
-    </div>
-
-    <div class="columns">
-      <div class="column">
-        <table class="table is-fullwidth is-narrow">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nome</th>
-              <th>Opções</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+        </div>
       </div>
     </div>
 

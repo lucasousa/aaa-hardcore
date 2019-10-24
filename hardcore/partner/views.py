@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Partner
 from django.http import HttpResponseRedirect
+from django.urls import reverse
  
 
 # Create your views here.
