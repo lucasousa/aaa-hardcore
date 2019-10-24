@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Product
+from .models import AAA
 # Create your views here.
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -13,7 +14,8 @@ def add(request):
         logo = request.FILES['logo']
         description = request.POST['description']
         name = request.POST['name']
-        product = Product.objects.create(name = name, logo = logo, description = description)
+        athletic = AAA.objects.get(id=1)
+        product = Product.objects.create(name = name, image = logo, value= '25', description = description,athletic= athletic )
         product.save()
         return HttpResponseRedirect(reverse('product:index'))
     return render(request, 'product/add.html')
