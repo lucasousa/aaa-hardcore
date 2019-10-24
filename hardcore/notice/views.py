@@ -41,5 +41,5 @@ def delete_notice(request, id):
     notice.delete()
     return HttpResponseRedirect(reverse('notice:index'))
 
-def notice_detail(request, id):
-    return render(request, 'notice/notice_detail.html', {'objeto':Notice.objects.get(id=id)})
+def notice_detail(request, slug):
+    return render(request, 'notice/notice_detail.html', {'objeto':Notice.objects.get(slug=slug)})
