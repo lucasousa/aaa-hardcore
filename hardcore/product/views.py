@@ -33,3 +33,8 @@ def edit(request, id):
         product.save()
         return HttpResponseRedirect(reverse('product:index'))
     return render(request, 'product/edit.html', {'objeto':Product.objects.get(id=id)} )
+
+def deletar(request, id):
+    product = Product.objects.get(id=id)
+    product.delete()
+    return HttpResponseRedirect(reverse('product:index'))
