@@ -1,4 +1,6 @@
 {% extends 'core/base.html' %}
+{% load l10n %}
+
 
 {% block title %}Editar Parceiros{% endblock %}
 
@@ -43,13 +45,20 @@
                   <textarea class="textarea" placeholder="Digite uma breve descrição do parceiro" name="description">{{objeto.description}}</textarea>
                 </div>
               </div>
+
+              <div class="field">
+                <label class="label"> {{objeto.value}} Preço</label>
+                <div class="control">
+                  <input class="input" type="number" name="value" placeholder="Ex.: Digite o valor do produto" value="{{objeto.value|unlocalize}}">
+                </div>
+              </div>
               
               <div class="field is-grouped">
                 <div class="control">
                   <button class="button is-link">Editar</button>
                 </div>
                 <div class="control">
-                  <a href="{% url 'partner:index' %}" class="button is-warning">Cancelar</a>
+                  <a href="{% url 'product:index' %}" class="button is-warning">Cancelar</a>
                 </div>
               </div>
             </form>

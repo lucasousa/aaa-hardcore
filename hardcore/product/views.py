@@ -4,7 +4,7 @@ from .models import Product
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-def product(request):
+def index(request):
     object_list = Product.objects.all()
     return render(request, 'product/product.html', {'objetos':object_list})
 
@@ -16,7 +16,7 @@ def edit(request, id):
         product = Product.objects.get(id =id)
         product.name = name
         product.description = description
-        product.description = value
+        product.value = value
         product.save()
         return HttpResponseRedirect(reverse('product:index'))
-    return render(request, 'product/edit.html' )
+    return render(request, 'product/edit.html', {'objeto':Product.objects.get(id=id)} )
