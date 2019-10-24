@@ -1,13 +1,11 @@
 {% extends 'core/base.html' %}
-{% load l10n %}
 
-
-{% block title %}Editar Parceiros{% endblock %}
+{% block title %}Adicionar Parceiros{% endblock %}
 
 {% block content %}
 <section class="section">
   <div class="container">
-    <h1 class="title">Editar Produto</h1> 
+    <h1 class="title">Adicionar Produto</h1> 
 
     <div class="columns">
       <div class="column">
@@ -18,15 +16,15 @@
               <div class="field">
                 <label class="label">Nome:</label>
                 <div class="control">
-                  <input class="input" type="text" name="name" placeholder="Ex.: Barraca do seu joão" value="{{objeto.name}}">
+                  <input class="input" type="text" name="name" placeholder="Ex.: Barraca do seu joão">
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">Logo:</label>
+                <label class="label">Imagem:</label>
                 <div class="file is-info">
                   <label class="file-label">
-                    <input class="file-input" type="file" name="logo">
+                    <input class="file-input" type="file" name="image">
                     <span class="file-cta">
                       <span class="file-icon">
                         <i class="fas fa-upload"></i>
@@ -42,20 +40,19 @@
               <div class="field">
                 <label class="label">Descrição</label>
                 <div class="control">
-                  <textarea class="textarea" placeholder="Digite uma breve descrição do parceiro" name="description">{{objeto.description}}</textarea>
+                  <textarea class="textarea" placeholder="Digite uma breve descrição do parceiro" name="description"></textarea>
                 </div>
               </div>
-
               <div class="field">
                 <label class="label">Preço</label>
                 <div class="control">
-                  <input class="input" type="number" name="value" placeholder="Ex.: Digite o valor do produto" value="{{objeto.value|unlocalize}}">
+                  <input class="input" type="number" name="value" placeholder="Ex.: Digite o valor do produto">
                 </div>
               </div>
               
               <div class="field is-grouped">
                 <div class="control">
-                  <button class="button is-link">Editar</button>
+                  <button class="button is-link">Cadastrar</button>
                 </div>
                 <div class="control">
                   <a href="{% url 'product:index' %}" class="button is-warning">Cancelar</a>
