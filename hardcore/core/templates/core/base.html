@@ -104,6 +104,18 @@
               </span>
             </a>
           </li>
+          {% if request.user.is_staff %}
+            <li>
+              <a href="{% url 'director:manage' %}"{% if request.resolver_match.app_name == 'director' %}class="is-bg-orange"{% endif %}>
+                <span class="icon">
+                  <i class="fas fa-user-tie"></i>
+                </span>
+                <span>
+                  Gerenciar Diretores
+                </span>
+              </a>
+            </li>
+          {% endif %}
         </ul>
         {% else %}
         <ul class="menu-list">
