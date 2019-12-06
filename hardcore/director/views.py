@@ -12,6 +12,8 @@ from aaa.models import AAA
 
 @login_required
 def manage(request):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('core:my-association'))
     if not request.user.is_staff:
         return HttpResponseRedirect(reverse("core:index"))
 
@@ -24,6 +26,8 @@ def manage(request):
 
 @login_required
 def add(request):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('core:my-association'))
     if not request.user.is_staff:
         return HttpResponseRedirect(reverse("core:index"))
 

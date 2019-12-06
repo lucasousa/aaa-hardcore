@@ -7,6 +7,8 @@ from django.shortcuts import render
 from django.urls import reverse
 import random
 from association.models import Association
+from partner.models import Partner
+from notice.models import Notice
 
 # Create your views here.
 @login_required
@@ -14,7 +16,17 @@ def index(request):
     if not request.user.is_superuser:
         return HttpResponseRedirect(reverse('core:my-association'))
 
-    return render(request, "core/index.html")
+    association = len(Association.objects.all())
+    notice = len(Notice.objects.all())
+    partner = len(Partner.objects.all())
+
+    res = {
+        'association':association,
+        'notice':notice,
+        'partner':partner,
+    }
+
+    return render(request, "core/index.html", res)
 
 @login_required
 @require_POST
