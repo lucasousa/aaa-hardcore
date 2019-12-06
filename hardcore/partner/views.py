@@ -37,3 +37,10 @@ def deletar(request, id):
     partner = Partner.objects.get(id=id)
     partner.delete()
     return HttpResponseRedirect(reverse('partner:index'))
+
+def views_partner(request,id):
+    partner = Partner.objects.get(id=id)
+    res = {
+        'objeto':partner
+    }
+    return render(request,'partner/partner_detail.html',res)

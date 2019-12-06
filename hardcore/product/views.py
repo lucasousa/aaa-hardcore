@@ -7,6 +7,8 @@ from django.urls import reverse
 
 def index(request):
     object_list = Product.objects.all()
+    if("busca" in request.GET):
+        object_list = object_list.filter(name__icontains=request.GET["busca"])
     return render(request, 'product/product.html', {'objetos':object_list})
 
 def add(request):
@@ -38,3 +40,10 @@ def delete(request, id):
     product = Product.objects.get(id=id)
     product.delete()
     return HttpResponseRedirect(reverse('product:index'))
+
+def views_product(request,id):
+    product = Product.objects.get(id=id)
+    res = {
+        'objeto':product
+    }
+    return render(request,'product/product_detail.html',res)

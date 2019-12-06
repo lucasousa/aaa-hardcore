@@ -7,10 +7,18 @@ from django.shortcuts import render
 from django.urls import reverse
 import random
 
+from product.models import Product
+from notice.models import Notice
 
 # Create your views here.
 def index(request):
-    return render(request, 'website/index.html')
+    product = Product.objects.all().order_by("-id")[:4]
+    notice = Notice.objects.all().order_by("-published_date")[:4]
+    res = {
+        'objeto':product,
+        'notice':notice,
+    }
+    return render(request, 'website/index.html',res)
 
 def login_user(request):
     if request.user.is_authenticated:
@@ -91,3 +99,17 @@ def signup(request):
         return HttpResponseRedirect(reverse('website:login'))
     
     return render(request, 'website/signup.html')
+
+def product_list(request):
+    object_list = Product.objects.all()
+    res = {
+        'objeto':object_list,
+    }
+    return render(request, 'website/list-product.html',res)
+
+def notice_list(request):
+    object_list = Notice.objects.all().order_by("-published_date")
+    res = {
+        'notice':object_list,
+    }
+    return render(request, 'website/list-notice.html',res)
