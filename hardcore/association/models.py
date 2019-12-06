@@ -5,14 +5,14 @@ import datetime
 
 # Create your models here.
 class Association(models.Model):
-    date_entry = models.DateField()
+    date_entry = models.DateField(auto_now_add=True)
     expiration_date = models.DateField()
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     athletic = models.ForeignKey(AAA, on_delete = models.CASCADE)
 
     @property
     def expired(self):
-        if datetime.today() > self.expiration_date:
+        if datetime.date.today() > self.expiration_date:
             return True
         else:
             return False

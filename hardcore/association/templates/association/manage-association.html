@@ -31,8 +31,8 @@
 
     <div class="columns">
       <div class="column">
-        <a href="{% url 'association:add' %}" class="button is-link">
-          Adicionar um novo sócio
+        <a href="./?filter=not-associated" class="button is-link">
+          Mostrar somente não associados
         </a>
       </div>
     </div>
@@ -44,6 +44,7 @@
             <tr>
               <th>#</th>
               <th>Nome</th>
+              <th>Status</th>
               <th>Opções</th>
             </tr>
           </thead>
@@ -51,7 +52,21 @@
            {% for x in objetos %}
            <tr>
               <td>{{forloop.counter}}</td>
-              <td>{{x.user.profile.full_name}}</td>
+              <td>{{x.profile.full_name}}</td>
+              <td>
+                {% if x.profile.has_associated %}
+                <span class="tag is-medium is-link">Associado</span>
+                {% else %}
+                  <a class="button is-success button-associate" data-id="{{ x.id }}">
+                    <span class="icon" data-id="{{ x.id }}">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span data-id="{{ x.id }}">
+                      Associar/Renovar
+                    </span>
+                  </a>  
+                {% endif %}
+              </td>
               <td>
                 <a href="{% url 'association:deletar' x.id %}" class="button is-danger">
                   <span class="icon">
@@ -71,4 +86,26 @@
 
   </div>
 </section>
+
+<script>
+  const button_associate = document.getElementsByClassName('button-associate')
+
+  for(let i = 0; i < button_associate.length; i++){
+    button_associate[i].addEventListener('click', (evt) => {
+      let data = evt.target.getAttribute('data-id')
+
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+         location.reload();
+        }
+      };
+      xhttp.open("GET", "{% url 'association:add' %}?data=" + data, true);
+      xhttp.send();
+
+    })
+  }
+
+</script>
+
 {% endblock %}

@@ -52,6 +52,7 @@
         <p class="menu-label">
           Geral
         </p>
+        {% if request.user.is_superuser %}
         <ul class="menu-list">
           <li>
             <a {% if request.resolver_match.app_name == 'core' %}class="is-bg-orange"{% endif %} href="{% url 'core:index' %}">
@@ -104,7 +105,20 @@
             </a>
           </li>
         </ul>
-        
+        {% else %}
+        <ul class="menu-list">
+          <li>
+            <a {% if request.resolver_match.app_name == 'core' %}class="is-bg-orange"{% endif %} href="{% url 'core:my-association' %}">
+              <span class="icon">
+                <i class="fas fa-home"></i>
+              </span>
+              <span>
+                Minha Associação
+              </span>
+            </a>
+          </li>
+        </ul>
+        {% endif %}
       </aside>
     </div>
     <div class="column">
