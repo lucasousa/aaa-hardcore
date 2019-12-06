@@ -1,4 +1,5 @@
 Django==2.2.6
+django-summernote==0.8.11.4
+Pillow==6.2.0
 pytz==2019.3
 sqlparse==0.3.0
-Pillow==6.2.0

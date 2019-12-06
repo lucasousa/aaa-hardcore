@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Título da Notícia | AAA HardCore</title>
+  <title>{{ objeto.title }} | AAA HardCore</title>
   <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
@@ -26,13 +26,13 @@
     </section>
   </div>
 
-  <section class="hero">
+  <section class="hero notice-content">
     <div class="hero-body">
       <div class="container">
         <section class="section">
           <div class="container">
             <p class="control">
-              {{ objeto.text }}
+              {{ objeto.text|safe }}
             </p>
           </div>
         </section>  

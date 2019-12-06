@@ -65,5 +65,14 @@ a.navbar-item:hover{
 }
 
 .is-content-list{
-  min-height: 70vh;
+  min-height: 76vh;
+}
+
+.notice-content{
+  text-indent: 40px;
+}
+
+.notice-content p{
+  margin-bottom: 20px;
+  text-align: justify;
 }

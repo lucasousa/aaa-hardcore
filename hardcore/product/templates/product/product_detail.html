@@ -6,61 +6,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Título da Notícia | AAA HardCore</title>
+  <title>{{ objeto.name }} | AAA HardCore</title>
   <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
 </head>
 
 <body>
-  <div class="degradee-initial">
-    <div class="hero-head">
-      <header class="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <a class="navbar-item" href="{% url 'website:index' %}">
-              < AAA HardCore />
-            </a>
-            <span class="navbar-burger burger" data-target="navbarMenuHeroC">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </div>
-          <div id="navbarMenuHeroC" class="navbar-menu">
-            <div class="navbar-end">
-              <a class="navbar-item is-active" href="{% url 'website:index' %}">
-                <span class="icon">
-                  <i class="fas fa-home"></i>
-                </span>
-                <span>Home</span>
-              </a>
-              <a class="navbar-item" href="{% url 'website:product_list' %}">
-                <span class="icon">
-                  <i class="fas fa-shopping-basket"></i>
-                </span>
-                <span>Produtos</span>
-              </a>
-              <a class="navbar-item" href="{% url 'website:notice_list' %}">
-                <span class="icon">
-                  <i class="fas fa-file-alt"></i>
-                </span>
-                <span>Notícias</span>
-              </a>
-              <span class="navbar-item">
-                <a class="button is-bg-orange-outlined" href="{% url 'website:login' %}">
-                  <span class="icon">
-                    <i class="fas fa-user"></i>
-                  </span>
-                  <span>Login</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </header>
-    </div>
-  </div>
 
   <section class="hero is-content-list">
     <div class="hero-body">
