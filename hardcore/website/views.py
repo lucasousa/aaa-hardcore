@@ -9,14 +9,17 @@ import random
 
 from product.models import Product
 from notice.models import Notice
+from partner.models import Partner
 
 # Create your views here.
 def index(request):
     product = Product.objects.all().order_by("-id")[:4]
+    partner = Partner.objects.all().order_by("-id")[:4]
     notice = Notice.objects.all().order_by("-published_date")[:4]
     res = {
         'objeto':product,
         'notice':notice,
+        'partner':partner,
     }
     return render(request, 'website/index.html',res)
 
@@ -112,4 +115,12 @@ def notice_list(request):
     res = {
         'notice':object_list,
     }
-    return render(request, 'website/list-notice.html',res)
+    return render(request, 'website/list-notice.html',res
+    )
+
+def partner_list(request):
+    object_list = Partner.objects.all().order_by("-id")
+    res = {
+        'partner':object_list,
+    }
+    return render(request, 'website/list-partner.html',res)

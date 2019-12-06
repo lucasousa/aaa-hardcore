@@ -68,8 +68,6 @@ def deletar(request, id):
 
 
 def views_partner(request, id):
-    if not request.user.is_superuser:
-        return HttpResponseRedirect(reverse('core:my-association'))
     partner = Partner.objects.get(id=id)
     res = {
         'objeto': partner
