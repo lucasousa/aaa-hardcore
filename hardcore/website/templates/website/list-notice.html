@@ -67,7 +67,7 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title has-text-centered">Notícias</h1>
-        <div class="columns is-multiple">
+        <div class="columns is-multiline">
         {% for obj in notice %}
           <div class="column is-4">
             <div class="card">
@@ -81,7 +81,7 @@
 
                 <div class="content">
                   <div class="content">
-                    {{ obj.text | slice:"0:200"}}
+                    {{ obj.text|slice:"50"|safe}}
                   </div>
                 </div>
               </div>

@@ -34,11 +34,15 @@
         <a href="./?filter=not-associated" class="button is-link">
           Mostrar somente não associados
         </a>
+        <a href="./?filter=all" class="button is-link">
+          Mostrar Todos
+        </a>
       </div>
     </div>
 
     <div class="columns">
       <div class="column">
+        {% if objetos %}
         <table class="table is-fullwidth is-narrow">
           <thead>
             <tr>
@@ -81,6 +85,9 @@
            {% endfor %}
           </tbody>
         </table>
+        {% else %}
+        <h2 class="subtitle has-text-danger">Não foi encontrado usuários com os parâmetros informados.</h2>
+        {% endif %}
       </div>
     </div>
 

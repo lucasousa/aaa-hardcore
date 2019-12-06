@@ -13,8 +13,7 @@ def index(request):
     object_list = User.objects.all()
 
     if 'filter' in request.GET and request.GET['filter'] == 'not-associated':
-        object_list = sorted(object_list, key=lambda t: t.profile.has_associated)
-        print("=========== object list", object_list)
+        object_list = [x for x in object_list if not x.profile.has_associated]
 
     if("busca" in request.GET):
         object_list = object_list.filter(name__icontains=request.GET["busca"])

@@ -54,7 +54,7 @@
             <div class="card">
               <div class="card-image">
                 <a href="{% url 'product:views_product' obj.id %}">
-                    <figure class="image is-4by3">
+                    <figure class="image">
                       <img src="{{ obj.image.url }}" alt="Placeholder image">
                     </figure>
                 </a>
@@ -106,7 +106,7 @@
 
                 <div class="content">
                   <div class="content">
-                    {{ obj.text | slice:"0:200"}}
+                    {{ obj.text|safe|slice:"0:200"}}
                     <br>
                     <a href="{% url 'notice:detail_notice' obj.slug %}" class="button is-link">
                       Visualizar
