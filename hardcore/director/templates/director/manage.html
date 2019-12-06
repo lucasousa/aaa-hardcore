@@ -51,12 +51,10 @@
              {% for x in users %}
              <tr>
                 <td>{{forloop.counter}}</td>
-                <td>{{x.profile.full_name}}</td>
+                <td>{{x.user.profile.full_name}}</td>
+                <td>{{ x.office }}</td>
                 <td>
-                  
-                </td>
-                <td>
-                  <a href="{% url 'association:deletar' x.id %}" class="button is-danger">
+                  <a href="{% url 'director:delete' x.id %}" class="button is-danger">
                     <span class="icon">
                       <i class="fas fa-trash-alt"></i>
                     </span>
@@ -70,7 +68,11 @@
             </tbody>
           </table>
         {% else %}
-          <h2 class="subtitle has-text-danger">Você não possui diretores cadastrados</h2>
+          {% if 'busca' in request.GET %}
+            <h2 class="subtitle has-text-danger">Não foi possível encontrar diretores com esse nome.</h2>
+          {% else %}
+            <h2 class="subtitle has-text-danger">Você não possui diretores cadastrados</h2>
+          {% endif %}
         {% endif %}
       </div>
     </div>

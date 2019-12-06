@@ -2,6 +2,10 @@
 
 {% block title %}Adicionar Diretor{% endblock %}
 
+{% block head %}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock%}
+
 {% block content %}
 <section class="section">
   <div class="container">
@@ -16,7 +20,7 @@
               <div class="field">
                 <label class="label">Usuário:</label>
                 <div class="control">
-                  <input class="input" type="text" name="user">
+                  <input class="input" type="text" name="user" onkeypress="buscar(this)" required>
                 </div>
               </div>
 
@@ -44,7 +48,21 @@
   </div>
 </section>
 
-
-
 {% endblock %}
       
+{% block js %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  let users = []
+  {% for user in users %}
+  users.push('{{ user.profile.full_name }} | {{ user.profile.cpf }}')
+  {% endfor %}
+ 
+  function buscar(el){
+    $(el).autocomplete({
+      source: users
+    });
+  }
+</script>
+{% endblock %}
