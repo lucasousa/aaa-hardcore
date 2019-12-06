@@ -4,6 +4,8 @@ from .models import AAA
 # Create your views here.
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import os
+from django.conf import settings
 
 def index(request):
     object_list = Product.objects.all()
@@ -32,6 +34,16 @@ def edit(request, id):
         product.name = name
         product.description = description
         product.value = value
+        if 'logo' in request.FILES:
+            logo = request.FILES['logo']
+            old_file = settings.MEDIA_ROOT + str(product.image)
+            try:
+                os.remove(old_file)
+            except:
+                pass
+
+            product.image = logo
+
         product.save()
         return HttpResponseRedirect(reverse('product:index'))
     return render(request, 'product/edit.html', {'objeto':Product.objects.get(id=id)} )
