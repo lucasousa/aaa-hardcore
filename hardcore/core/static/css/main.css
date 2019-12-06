@@ -63,3 +63,7 @@ a.navbar-item:hover{
   background-color: rgb(218, 106, 32);
   color: white;
 }
+
+.is-content-list{
+  min-height: 70vh;
+}

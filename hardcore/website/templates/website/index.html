@@ -48,9 +48,9 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title has-text-centered">Produtos</h1>
-      <div class="columns">
+      <div class="columns is-multiline">
         {% for obj in objeto %}
-          <div class="column">
+          <div class="column is-3">
             <div class="card">
               <div class="card-image">
                 <a href="{% url 'product:views_product' obj.id %}">
@@ -78,9 +78,11 @@
             </div>
           </div>
         {% endfor %}
-        <a href="{% url 'website:product_list' %}" class="button is-link">
-          Visualizar todos
-        </a>
+        </div>
+        <div class="control">
+          <a href="{% url 'website:product_list' %}" class="button is-link">
+            Visualizar todos
+          </a>
         </div>
       </div>
     </div>
@@ -90,9 +92,9 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title has-text-centered">Últimas Notícias</h1>
-      <div class="columns">
+      <div class="columns is-multiline">
         {% for obj in notice %}
-          <div class="column">
+          <div class="column is-3">
             <div class="card">
               <div class="card-content">
                 <div class="media">
@@ -115,6 +117,8 @@
             </div>
           </div>
         {% endfor%}
+      </div>
+      <div class="control">
         <a href="{% url 'website:notice_list' %}" class="button is-link">
           Visualizar todos
         </a>
