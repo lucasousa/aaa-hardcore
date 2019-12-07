@@ -22,6 +22,13 @@ def manage(request):
     if 'busca' in request.GET:
         users = users.filter(user__profile__full_name__icontains=request.GET['busca'])
 
+    if 'message' in request.session:
+        message = request.session['message']
+        class_name = request.session['class']
+        del request.session['message']
+        del request.session['class']
+        return render(request, 'director/manage.html', {'message': message, 'class': class_name, 'users': users})
+
     return render(request, "director/manage.html", {'users': users})
 
 @login_required
@@ -32,8 +39,14 @@ def add(request):
         return HttpResponseRedirect(reverse("core:index"))
 
     if request.POST:
-        user_cpf = request.POST['user'].split('| ')[1]
-        user = User.objects.get(profile__cpf=user_cpf)
+        try:
+            user_cpf = request.POST['user'].split('| ')[1]
+            user = User.objects.get(profile__cpf=user_cpf)
+        except:
+            request.session['message'] = 'Impossível associar este diretor. Escolha uma opção válida ao digitar o nome.'
+            request.session['class'] = 'has-text-danger'
+            return HttpResponseRedirect(reverse("director:manage"))
+        
         user.is_superuser = True
         user.save()
         office = request.POST['office']

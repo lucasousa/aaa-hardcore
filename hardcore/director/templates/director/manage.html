@@ -35,6 +35,14 @@
       </div>
     </div>
 
+    {% if message %}
+    <div class="columns">
+      <div class="column">
+        <h2 class="subtitle {{ class }}">{{ message }}</h2>
+      </div>
+    </div>
+    {% endif %}
+
     <div class="columns">
       <div class="column">
         {% if users %}
