@@ -6,10 +6,10 @@
 <div class="hero-body">
   <div class="container has-text-centered">
     <h1 class="title">
-      Título
+      Bem-vindo
     </h1>
     <h2 class="subtitle">
-      Subtítulo
+      Conheça a Hardcore, a AAA de Sistemas
     </h2>
     <p>
       <a href="" class="button is-rounded is-bg-orange has-text-white is-medium">
@@ -141,7 +141,7 @@
 
                 <div class="content">
                   <div class="content">
-                    {{ obj.text|safe|slice:"0:200"}}
+                    {{ obj.text|safe|slice:"0:50"}}
                     <br>
                     <a href="{% url 'notice:detail_notice' obj.slug %}" class="button is-link">
                       Visualizar
