@@ -22,7 +22,7 @@ def index(request):
         object_list = [x for x in object_list if not x.profile.has_associated]
 
     if("busca" in request.GET):
-        object_list = object_list.filter(profile__fullname__icontains=request.GET["busca"])
+        object_list = object_list.filter(profile__full_name__icontains=request.GET["busca"])
     return render(request, 'association/manage-association.html', {'objetos': object_list})
 
 
@@ -44,6 +44,8 @@ def add(request):
 def deletar(request, id):
     if not request.user.is_superuser:
         return HttpResponseRedirect(reverse('core:my-association'))
-    association = Association.objects.get(id=id)
+
+    user = User.objects.get(id=id)
+    association = Association.objects.get(user=user)
     association.delete()
     return HttpResponseRedirect(reverse('association:index'))

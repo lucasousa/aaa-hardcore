@@ -61,25 +61,29 @@
                 {% if x.profile.has_associated %}
                 <span class="tag is-medium is-link">Associado</span>
                 {% else %}
-                  <a class="button is-success button-associate" data-id="{{ x.id }}">
-                    <span class="icon" data-id="{{ x.id }}">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    <span data-id="{{ x.id }}">
-                      Associar/Renovar
-                    </span>
-                  </a>  
+                <span class="tag is-medium is-warning">Não associado</span>   
                 {% endif %}
               </td>
               <td>
+                {% if not x.profile.has_associated %}
+                <a class="button is-success button-associate" data-id="{{ x.id }}">
+                  <span class="icon" data-id="{{ x.id }}">
+                    <i class="fas fa-check"></i>
+                  </span>
+                  <span data-id="{{ x.id }}">
+                    Associar/Renovar
+                  </span>
+                </a>  
+                {% else %}
                 <a href="{% url 'association:deletar' x.id %}" class="button is-danger">
                   <span class="icon">
                     <i class="fas fa-trash-alt"></i>
                   </span>
                   <span>
-                    Excluir
+                    Excluir Associação
                   </span>
                 </a>
+                {% endif %}
               </td>
             </tr>
            {% endfor %}
