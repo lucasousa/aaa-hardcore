@@ -41,12 +41,12 @@ def add(request):
     if request.POST:
         try:
             user_cpf = request.POST['user'].split('| ')[1]
+            user = User.objects.get(profile__cpf=user_cpf)
         except:
             request.session['message'] = 'Impossível associar este diretor. Escolha uma opção válida ao digitar o nome.'
             request.session['class'] = 'has-text-danger'
             return HttpResponseRedirect(reverse("director:manage"))
         
-        user = User.objects.get(profile__cpf=user_cpf)
         user.is_superuser = True
         user.save()
         office = request.POST['office']
