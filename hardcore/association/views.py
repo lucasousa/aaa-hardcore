@@ -22,7 +22,7 @@ def index(request):
         object_list = [x for x in object_list if not x.profile.has_associated]
 
     if("busca" in request.GET):
-        object_list = object_list.filter(name__icontains=request.GET["busca"])
+        object_list = object_list.filter(profile__fullname__icontains=request.GET["busca"])
     return render(request, 'association/manage-association.html', {'objetos': object_list})
 
 
