@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+  {% block head %}
+  {% endblock %}
 </head>
 <body>
 
@@ -52,6 +54,7 @@
         <p class="menu-label">
           Geral
         </p>
+        {% if request.user.is_superuser %}
         <ul class="menu-list">
           <li>
             <a {% if request.resolver_match.app_name == 'core' %}class="is-bg-orange"{% endif %} href="{% url 'core:index' %}">
@@ -74,7 +77,7 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'notice:index' %}">
+            <a href="{% url 'notice:index' %}" {% if request.resolver_match.app_name == 'notice' %} class="is-bg-orange" {% endif %}>
               <span class="icon">
                 <i class="fas fa-file-alt"></i>
               </span>
@@ -103,8 +106,33 @@
               </span>
             </a>
           </li>
+          {% if request.user.is_staff %}
+            <li>
+              <a href="{% url 'director:manage' %}"{% if request.resolver_match.app_name == 'director' %}class="is-bg-orange"{% endif %}>
+                <span class="icon">
+                  <i class="fas fa-user-tie"></i>
+                </span>
+                <span>
+                  Gerenciar Diretores
+                </span>
+              </a>
+            </li>
+          {% endif %}
         </ul>
-        
+        {% else %}
+        <ul class="menu-list">
+          <li>
+            <a {% if request.resolver_match.app_name == 'core' %}class="is-bg-orange"{% endif %} href="{% url 'core:my-association' %}">
+              <span class="icon">
+                <i class="fas fa-home"></i>
+              </span>
+              <span>
+                Minha Associação
+              </span>
+            </a>
+          </li>
+        </ul>
+        {% endif %}
       </aside>
     </div>
     <div class="column">
@@ -125,7 +153,36 @@
       </p>
     </div>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+});
+  </script>
+
+  {% block js %}
+  {% endblock %}
 
 </body>
 </html>
-{% load static %}

@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Parceiros | AAA HardCore</title>
+  <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+</head>
+
+<body>
+  <div class="degradee-initial">
+    <!-- <section class="hero is-home-page is-fullheight"> -->
+      <div class="hero-head">
+        <header class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="{% url 'website:index' %}">
+                < AAA HardCore />
+              </a>
+              <span class="navbar-burger burger" data-target="navbarMenuHeroC">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarMenuHeroC" class="navbar-menu">
+              <div class="navbar-end">
+                <a class="navbar-item is-active" href="{% url 'website:index' %}">
+                  <span class="icon">
+                    <i class="fas fa-home"></i>
+                  </span>
+                  <span>Home</span>
+                </a>
+                <a class="navbar-item" href="{% url 'website:product_list' %}">
+                  <span class="icon">
+                    <i class="fas fa-shopping-basket"></i>
+                  </span>
+                  <span>Produtos</span>
+                </a>
+                <a class="navbar-item" href="{% url 'website:partner_list' %}">
+                  <span class="icon">
+                    <i class="fas fa-handshake"></i>
+                  </span>
+                  <span>Parceiros</span>
+                </a>
+                <a class="navbar-item" href="{% url 'website:notice_list' %}">
+                  <span class="icon">
+                    <i class="fas fa-file-alt"></i>
+                  </span>
+                  <span>Notícias</span>
+                </a>
+                <span class="navbar-item">
+                  <a class="button is-bg-orange-outlined" href="{% url 'website:login' %}">
+                    <span class="icon">
+                      <i class="fas fa-user"></i>
+                    </span>
+                    <span>Login</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+  </div>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">Parceiros</h1>
+      <div class="columns is-multiline">
+        {% for obj in partner %}
+          <div class="column is-3">
+            <div class="card">
+              <div class="card-image">
+                <a href="{% url 'partner:views_partner' obj.id %}">
+                    <figure class="image">
+                      <img src="{{ obj.logo.url }}" alt="Placeholder image">
+                    </figure>
+                </a>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ obj.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+</section>
+
+  <footer class="footer has-background-black has-text-white">
+    <div class="content has-text-centered">
+      <p>
+        <strong class="has-text-white">
+          < AAA HardCore /></strong> by <a href="">Los Hugos</a>.
+        <br>
+        Todos os direitos reservados - {% now "Y" %}.
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>

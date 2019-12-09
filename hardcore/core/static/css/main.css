@@ -63,3 +63,16 @@ a.navbar-item:hover{
   background-color: rgb(218, 106, 32);
   color: white;
 }
+
+.is-content-list{
+  min-height: 76vh;
+}
+
+.notice-content{
+  text-indent: 40px;
+}
+
+.notice-content p{
+  margin-bottom: 20px;
+  text-align: justify;
+}

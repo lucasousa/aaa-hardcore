@@ -22,6 +22,15 @@
 
               <div class="field">
                 <label class="label">Logo:</label>
+                
+                {% if objeto.logo %}
+                  <div class="columns">
+                    <div class="column">
+                      <a href="{{ objeto.logo.url }}" class="button is-dark">Atual: {{ objeto.logo.name }}</a>
+                    </div>
+                  </div>
+                {% endif %}
+                
                 <div class="file is-info">
                   <label class="file-label">
                     <input class="file-input" type="file" name="logo">

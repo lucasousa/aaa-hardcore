@@ -16,15 +16,12 @@
               <div class="field">
                 <label class="label">Título:</label>
                 <div class="control">
-                  <input class="input" type="text" name="title" placeholder="Ex.: Conheça os novos parceiros da A.A.A Hardcore">
+                  <input class="input" required="" type="text" name="title" placeholder="Ex.: Conheça os novos parceiros da A.A.A Hardcore">
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">Texto</label>
-                <div class="control">
-                  <textarea class="textarea" placeholder="Digite o texto da notícia" name="content"></textarea>
-                </div>
+                {{ notice_form }}
               </div>
               
               <div class="field is-grouped">

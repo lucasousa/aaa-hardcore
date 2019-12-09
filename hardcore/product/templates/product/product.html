@@ -31,7 +31,7 @@
 
     <div class="columns">
       <div class="column">
-        <a href="" class="button is-link">
+        <a href="{% url 'product:add' %}" class="button is-link">
           Adicionar um novo produto
         </a>
       </div>
@@ -61,12 +61,20 @@
                     Editar
                   </span>
                 </a>
-                <a href="" class="button is-danger">
+                <a href="{% url 'product:delete' x.id %}" class="button is-danger">
                   <span class="icon">
                     <i class="fas fa-trash-alt"></i>
                   </span>
                   <span>
                     Excluir
+                  </span>
+                </a>
+                <a href="{% url 'product:views_product' x.id %}" class="button is-info">
+                  <span class="icon">
+                    <i class="fas fa-eye"></i>
+                  </span>
+                  <span>
+                    Visualizar
                   </span>
                 </a>
               </td>

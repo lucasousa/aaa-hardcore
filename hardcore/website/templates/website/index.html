@@ -6,13 +6,13 @@
 <div class="hero-body">
   <div class="container has-text-centered">
     <h1 class="title">
-      Título
+      Bem-vindo(a)
     </h1>
     <h2 class="subtitle">
-      Subtítulo
+      Conheça a Hardcore, a A.A.A de Sistemas
     </h2>
     <p>
-      <a href="" class="button is-rounded is-bg-orange has-text-white is-medium">
+      <a href="{% url 'website:signup' %}" class="button is-rounded is-bg-orange has-text-white is-medium">
         Fazer Associação
       </a>
     </p>
@@ -48,217 +48,115 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title has-text-centered">Produtos</h1>
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">Product Name</p>
-                </div>
+      <div class="columns is-multiline">
+        {% for obj in objeto %}
+          <div class="column is-3">
+            <div class="card">
+              <div class="card-image">
+                <a href="{% url 'product:views_product' obj.id %}">
+                    <figure class="image">
+                      <img src="{{ obj.image.url }}" alt="Placeholder image">
+                    </figure>
+                </a>
               </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ obj.name }}</p>
+                  </div>
+                </div>
 
-              <div class="content">
-                <div class="control">
-                  <div class="tags has-addons">
-                    <span class="tag is-link">R$</span>
-                    <span class="tag is-light">25,00</span>
+                <div class="content">
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <span class="tag is-link">R$</span>
+                      <span class="tag is-light">{{ obj.value }}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        {% endfor %}
         </div>
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">Product Name</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <div class="control">
-                  <div class="tags has-addons">
-                    <span class="tag is-link">R$</span>
-                    <span class="tag is-light">35,00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">Product Name</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <div class="control">
-                  <div class="tags has-addons">
-                    <span class="tag is-link">R$</span>
-                    <span class="tag is-light">20,00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">Product Name</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <div class="control">
-                  <div class="tags has-addons">
-                    <span class="tag is-link">R$</span>
-                    <span class="tag is-light">7,00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="control">
+          <a href="{% url 'website:product_list' %}" class="button is-link">
+            Visualizar todos
+          </a>
         </div>
       </div>
     </div>
-  </div>
+</section>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">Parceiros</h1>
+      <div class="columns is-multiline">
+        {% for obj in partner %}
+          <div class="column is-3">
+            <div class="card">
+              <div class="card-image">
+                <a href="{% url 'partner:views_partner' obj.id %}">
+                    <figure class="image">
+                      <img src="{{ obj.logo.url }}" alt="Placeholder image">
+                    </figure>
+                </a>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ obj.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        <div class="control">
+          <a href="{% url 'website:partner_list' %}" class="button is-link">
+            Visualizar todos
+          </a>
+        </div>
+      </div>
+    </div>
 </section>
 
 <section class="hero">
   <div class="hero-body">
     <div class="container">
       <h1 class="title has-text-centered">Últimas Notícias</h1>
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">Title</p>
-                  <p class="subtitle is-6">08/09/2019 às 10:00</p>
+      <div class="columns is-multiline">
+        {% for obj in notice %}
+          <div class="column is-3">
+            <div class="card">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ obj.title }}</p>
+                    <p class="subtitle is-6">{{ obj.published_date }}</p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="content">
                 <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                  <a href="#">#css</a> <a href="#">#responsive</a>
+                  <div class="content">
+                    {{ obj.text|safe|slice:"0:50"}}
+                    <br>
+                    <a href="{% url 'notice:detail_notice' obj.slug %}" class="button is-link">
+                      Visualizar
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">Title</p>
-                  <p class="subtitle is-6">08/09/2019 às 10:00</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                  <a href="#">#css</a> <a href="#">#responsive</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">Title</p>
-                  <p class="subtitle is-6">08/09/2019 às 10:00</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                  <a href="#">#css</a> <a href="#">#responsive</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">Title</p>
-                  <p class="subtitle is-6">08/09/2019 às 10:00</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                  <a href="#">#css</a> <a href="#">#responsive</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor%}
+      </div>
+      <div class="control">
+        <a href="{% url 'website:notice_list' %}" class="button is-link">
+          Visualizar todos
+        </a>
       </div>
     </div>
   </div>

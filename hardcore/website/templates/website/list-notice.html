@@ -1,22 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Lista de Notícias | AAA HardCore</title>
-  <link rel="stylesheet" href="static/css/bulma.css">
-  <link rel="stylesheet" href="static/css/main.css">
-  <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
+  <title>{% block title %}{% endblock %} | AAA HardCore</title>
+  <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
 </head>
+
 <body>
   <div class="degradee-initial">
-    <section class="hero is-link-page is-link is-medium">
+    <!-- <section class="hero is-home-page is-fullheight"> -->
       <div class="hero-head">
         <header class="navbar">
           <div class="container">
             <div class="navbar-brand">
-              <a class="navbar-item" href="./index.html">
+              <a class="navbar-item" href="{% url 'website:index' %}">
                 < AAA HardCore />
               </a>
               <span class="navbar-burger burger" data-target="navbarMenuHeroC">
@@ -27,32 +30,32 @@
             </div>
             <div id="navbarMenuHeroC" class="navbar-menu">
               <div class="navbar-end">
-                <a class="navbar-item" href="./index.html">
+                <a class="navbar-item is-active" href="{% url 'website:index' %}">
                   <span class="icon">
                     <i class="fas fa-home"></i>
                   </span>
                   <span>Home</span>
                 </a>
-                <a class="navbar-item" href="./gallery.html">
-                  <span class="icon">
-                    <i class="fas fa-image"></i>
-                  </span>
-                  <span>Galeria</span>
-                </a>
-                <a class="navbar-item" href="./list-product.html">
+                <a class="navbar-item" href="{% url 'website:product_list' %}">
                   <span class="icon">
                     <i class="fas fa-shopping-basket"></i>
                   </span>
                   <span>Produtos</span>
                 </a>
-                <a class="navbar-item is-active" href="./list-notice.html">
+                <a class="navbar-item" href="{% url 'website:partner_list' %}">
+                  <span class="icon">
+                    <i class="fas fa-handshake"></i>
+                  </span>
+                  <span>Parceiros</span>
+                </a>
+                <a class="navbar-item" href="{% url 'website:notice_list' %}">
                   <span class="icon">
                     <i class="fas fa-file-alt"></i>
                   </span>
                   <span>Notícias</span>
                 </a>
                 <span class="navbar-item">
-                  <a class="button is-outlined" href="./login.html">
+                  <a class="button is-bg-orange-outlined" href="{% url 'website:login' %}">
                     <span class="icon">
                       <i class="fas fa-user"></i>
                     </span>
@@ -64,145 +67,37 @@
           </div>
         </header>
       </div>
-        
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title">
-            Notícias
-          </h1>
-        </div>
-      </div>
-    </section>
   </div>
-  
-  <section class="hero">
+
+  <section class="hero is-content-list">
     <div class="hero-body">
       <div class="container">
-        <div class="columns">
-          <div class="column">
+        <h1 class="title has-text-centered">Notícias</h1>
+        <div class="columns is-multiline">
+        {% for obj in notice %}
+          <div class="column is-4">
             <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <a href="./notice-detail.html">    
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                  </a>
-                </figure>
-              </div>
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p class="title is-4">
-                      <a href="./notice-detail.html">
-                        Title
-                      </a>
-                    </p>
-                    <p class="subtitle is-6">08/09/2019 às 10:00</p>
+                    <p class="title is-4">{{ obj.title }}</p>
+                    <p class="subtitle is-6">{{ obj.published_date }}</p>
                   </div>
                 </div>
 
                 <div class="content">
                   <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                    <a href="#">#css</a> <a href="#">#responsive</a>
+                    {{ obj.text|slice:"50"|safe}}
+                    <br>
+                    <a href="{% url 'notice:detail_notice' obj.slug %}" class="button is-link">
+                      Visualizar
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="column">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <a href="./notice-detail.html">    
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                  </a>
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">
-                      <a href="./notice-detail.html">
-                        Title
-                      </a>
-                    </p>
-                    <p class="subtitle is-6">08/09/2019 às 10:00</p>
-                  </div>
-                </div>
-
-                <div class="content">
-                  <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                    <a href="#">#css</a> <a href="#">#responsive</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <a href="./notice-detail.html">    
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                  </a>
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">
-                      <a href="./notice-detail.html">
-                        Title
-                      </a>
-                    </p>
-                    <p class="subtitle is-6">08/09/2019 às 10:00</p>
-                  </div>
-                </div>
-
-                <div class="content">
-                  <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                    <a href="#">#css</a> <a href="#">#responsive</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <a href="./notice-detail.html">    
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                  </a>
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">
-                      <a href="./notice-detail.html">
-                        Title
-                      </a>
-                    </p>
-                    <p class="subtitle is-6">08/09/2019 às 10:00</p>
-                  </div>
-                </div>
-
-                <div class="content">
-                  <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                    <a href="#">#css</a> <a href="#">#responsive</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        {% endfor%}
         </div>
       </div>
     </div>
@@ -211,12 +106,13 @@
   <footer class="footer has-background-black has-text-white">
     <div class="content has-text-centered">
       <p>
-        <strong class="has-text-white">< AAA HardCore /></strong> by <a href="">Los Hugos</a>.
+        <strong class="has-text-white">
+          < AAA HardCore /></strong> by <a href="">Los Hugos</a>.
         <br>
-        Todos os direitos reservados - 2019.
+        Todos os direitos reservados - {% now "Y" %}.
       </p>
     </div>
   </footer>
-
 </body>
+
 </html>

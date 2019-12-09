@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'partner',
     'product',
     'website',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media_images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_images')
 
+SUMMERNOTE_THEME = 'lite'
+
+SUMMERNOTE_CONFIG = {
+    'summernote': {
+        'airMode': False,
+        'lang': 'pt-BR',
+    },
+}

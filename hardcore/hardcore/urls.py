@@ -25,5 +25,7 @@ urlpatterns = [
     path('partner/', include('partner.urls', namespace='partner')),
     path('notice/', include('notice.urls', namespace='notice')),
     path('product/',include('product.urls', namespace='product')),
-    path('/association/', include('association.urls', namespace='association')),
+    path('association/', include('association.urls', namespace='association')),
+    path('director/', include('director.urls', namespace='director')),
+    path('summernote/', include('django_summernote.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

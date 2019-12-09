@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Editar Notícias{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Editar Notícias</h1> 
+
+    <div class="columns">
+      <div class="column">
+        <div class="container">
+          <div class="box">
+            <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+              <div class="field">
+                <label class="label">Título:</label>
+                <div class="control">
+                  <input class="input" required="" type="text" name="title" placeholder="Ex.: Conheça os novos parceiros da A.A.A Hardcore" value="{{objeto.title}}">
+                </div>
+              </div>
+              
+              <div class="field">
+                <label class="label">Texto:</label>
+                {{ notice_form }}
+              </div>
+              
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link">Editar</button>
+                </div>
+                <div class="control">
+                  <a href="{% url 'notice:index' %}" class="button is-warning">Cancelar</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+      

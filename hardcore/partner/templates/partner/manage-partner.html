@@ -68,6 +68,14 @@
                     Excluir
                   </span>
                 </a>
+                <a href="{% url 'partner:views_partner' x.id %}" class="button is-info">
+                  <span class="icon">
+                    <i class="fas fa-eye"></i>
+                  </span>
+                  <span>
+                    Visualizar
+                  </span>
+                </a>
               </td>
             </tr>
            {% endfor %}
