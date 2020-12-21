@@ -18,7 +18,7 @@
 }
 
 .is-bg-orange{
-  background-color: #F0690E;
+  background-color: #F0690E !important;
   color: white;
 }
 
@@ -75,4 +75,37 @@ a.navbar-item:hover{
 .notice-content p{
   margin-bottom: 20px;
   text-align: justify;
+}
+
+.image-card {
+    max-width: 100%;
+    object-fit: cover !important;
+    width: 300px !important;
+    height: 300px !important;
+    border-radius: 5px !important;
+}
+
+.content-card {
+    border-radius: 5px !important;
+}
+
+.hover-shadow {
+    transition: box-shadow .3s;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 0 11px rgba(33, 12, 15, 0.2);
+}
+
+.shadow-effect {
+    transition: box-shadow .3s;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+}
+
+.shadow-effect:hover {
+    box-shadow: 0 0 20px rgba(33, 12, 15, 0.3);
 }

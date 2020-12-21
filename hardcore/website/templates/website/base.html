@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
 </head>
-<body>
+<body class="has-background-light">
   <div class="degradee-initial">
     <section class="hero is-home-page is-fullheight">
       <div class="hero-head">
-        <header class="navbar is-fixed-top">
+        <header class="navbar">
           <div class="container">
             <div class="navbar-brand">
               <a class="navbar-item" href="{% url 'website:index' %}">
@@ -78,8 +78,6 @@
   <footer class="footer has-background-black has-text-white">
     <div class="content has-text-centered">
       <p>
-        <strong class="has-text-white">< AAA HardCore /></strong> by <a href="">Los Hugos</a>.
-        <br>
         Todos os direitos reservados - {% now "Y" %}.
       </p>
     </div>

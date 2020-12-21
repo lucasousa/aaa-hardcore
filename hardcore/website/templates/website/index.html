@@ -51,15 +51,15 @@
       <div class="columns is-multiline">
         {% for obj in objeto %}
           <div class="column is-3">
-            <div class="card">
+            <div class="card shadow-effect content-card">
               <div class="card-image">
                 <a href="{% url 'product:views_product' obj.id %}">
                     <figure class="image">
-                      <img src="{{ obj.image.url }}" alt="Placeholder image">
+                      <img class="image-card" src="{{ obj.image.url }}" alt="Placeholder image">
                     </figure>
                 </a>
               </div>
-              <div class="card-content">
+              <div class="card-content has-background-grey-lighter">
                 <div class="media">
                   <div class="media-content">
                     <p class="title is-4">{{ obj.name }}</p>
@@ -69,7 +69,7 @@
                 <div class="content">
                   <div class="control">
                     <div class="tags has-addons">
-                      <span class="tag is-link">R$</span>
+                      <span class="tag is-bg-orange">R$</span>
                       <span class="tag is-light">{{ obj.value }}</span>
                     </div>
                   </div>
@@ -80,7 +80,7 @@
         {% endfor %}
         </div>
         <div class="control has-text-centered">
-          <a href="{% url 'website:product_list' %}" class="button is-link">
+          <a href="{% url 'website:product_list' %}" class="button is-bg-orange">
             Visualizar todos
           </a>
         </div>
@@ -95,15 +95,15 @@
       <div class="columns is-multiline">
         {% for obj in partner %}
           <div class="column is-3">
-            <div class="card">
+            <div class="card shadow-effect content-card">
               <div class="card-image">
                 <a href="{% url 'partner:views_partner' obj.id %}">
                     <figure class="image">
-                      <img src="{{ obj.logo.url }}" alt="Placeholder image">
+                      <img class="image-card" src="{{ obj.logo.url }}" alt="Placeholder image">
                     </figure>
                 </a>
               </div>
-              <div class="card-content">
+              <div class="card-content has-background-grey-lighter">
                 <div class="media">
                   <div class="media-content">
                     <p class="title is-4">{{ obj.name }}</p>
@@ -115,7 +115,7 @@
         {% endfor %}
         </div>
         <div class="control has-text-centered">
-          <a href="{% url 'website:partner_list' %}" class="button is-link">
+          <a href="{% url 'website:partner_list' %}" class="button is-bg-orange">
             Visualizar todos
           </a>
         </div>
@@ -129,13 +129,13 @@
       <h1 class="title has-text-centered">Últimas Notícias</h1>
       <div class="columns is-multiline">
         {% for obj in notice %}
-          <div class="column is-3">
-            <div class="card">
+          <div class="column is-4">
+            <div class="card hover-shadow">
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p class="title is-4">{{ obj.title }}</p>
-                    <p class="subtitle is-6">{{ obj.published_date }}</p>
+                    <p class="title is-6">{{ obj.title }}</p>
+                    <p class="subtitle is-7">{{ obj.published_date }}</p>
                   </div>
                 </div>
 
@@ -143,7 +143,7 @@
                   <div class="content">
                     {{ obj.text|safe|slice:"0:50"}}
                     <br>
-                    <a href="{% url 'notice:detail_notice' obj.slug %}" class="button is-link">
+                    <a href="{% url 'notice:detail_notice' obj.slug %}" class="button is-dark is-outlined">
                       Visualizar
                     </a>
                   </div>
@@ -154,7 +154,7 @@
         {% endfor%}
       </div>
       <div class="control has-text-centered">
-        <a href="{% url 'website:notice_list' %}" class="button is-link">
+        <a href="{% url 'website:notice_list' %}" class="button is-bg-orange">
           Visualizar todos
         </a>
       </div>

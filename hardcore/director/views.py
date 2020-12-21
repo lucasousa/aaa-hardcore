@@ -20,7 +20,8 @@ def manage(request):
     users = Director.objects.all().order_by('user__profile__full_name')
 
     if 'busca' in request.GET:
-        users = users.filter(user__profile__full_name__icontains=request.GET['busca'])
+        users = users.filter(user__profile__full_name__contains=request.GET['busca'])
+        print("usuario", users)
 
     if 'message' in request.session:
         message = request.session['message']
