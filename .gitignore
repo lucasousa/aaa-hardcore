@@ -122,3 +122,6 @@ settings_local.py
 
 **/migrations/*
 **/_pycache_/*
+
+gunicorn.conf.txt
+nginx.txt

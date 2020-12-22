@@ -134,7 +134,7 @@ MEDIA_ROOT = '/var/www/html/hardcore/media/'
 STATIC_ROOT = '/var/www/html/hardcore/static/'
 
 SUMMERNOTE_THEME = 'lite'
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 SUMMERNOTE_CONFIG = {
     'summernote': {
         'airMode': False,
