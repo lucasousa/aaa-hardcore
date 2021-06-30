@@ -123,4 +123,8 @@ def partner_list(request):
     res = {
         'partner':object_list,
     }
-    return render(request, 'website/list-partner.html',res)
+    return render(request, 'website/list-partner.html', res)
+
+def about(request):
+    return render(request, 'website/about.html')
+

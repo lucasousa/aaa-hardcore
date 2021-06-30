@@ -12,7 +12,7 @@
 </head>
 <body class="has-background-light">
   <div class="degradee-initial">
-    <section class="hero is-home-page is-fullheight">
+    <section class="hero is-home-page is-fullheight" id="hero-home">
       <div class="hero-head">
         <header class="navbar">
           <div class="container">
@@ -52,6 +52,12 @@
                   </span>
                   <span>Notícias</span>
                 </a>
+                <a class="navbar-item" href="{% url 'website:about' %}">
+                  <span class="icon">
+                    <i class="fas fa-file-alt"></i>
+                  </span>
+                  <span>Quem somos</span>
+                </a>
                 <span class="navbar-item">
                   <a class="button is-bg-orange-outlined" href="{% url 'website:login' %}">
                     <span class="icon">
@@ -78,7 +84,7 @@
   <footer class="footer has-background-black has-text-white">
     <div class="content has-text-centered">
       <p>
-        Todos os direitos reservados - {% now "Y" %}.
+        <strong class="has-text-white">#LosHugos</strong> - Todos os direitos reservados - {% now "Y" %}.
       </p>
     </div>
   </footer>

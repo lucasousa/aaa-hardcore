@@ -1,0 +1,141 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %} Quem Somos {% endblock %}
+
+
+{% block content %}
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column is-4">
+          <figure class="image">
+              <img src="{% static 'img/escudo.png' %}">
+          </figure>
+          </div>
+          <div class="column">
+          <h1 class="is-size-3-desktop is-size-4-touch has-text-centered has-text-centered-mobile">
+              Quem somos.
+          </h1>
+          <br>
+          <p class="control is-size-5-desktop is-size-6-touch">
+            Somos a Associação Atlética Acadêmica Hardcore, fundada pelos alunos do curso de Sistemas de
+            Informação da Universidade Federal do Piauí - Campus Senador Helvídio Nunes de Barros.
+          </p>
+          <br>
+          <p class="control is-size-5-desktop is-size-6-touch">
+            Nossa associação é uma organização sem fins lucrativo que visa promover a integração e
+            interação entre os estudantes da comunidade através do incentivo a prática de esportes e e-sports,
+            no desenvolvimento de eventos e também no engajamento comum em causas humanitárias.
+          </p>
+          <br>
+          <p class="control is-size-5-desktop is-size-6-touch">
+            Pretendemos incluir todos os estudantes, não somente
+            alunos da UFPI, mas também de outras instituições de
+            ensino de Picos, visando proporcionar um convívio entre os
+            integrantes de toda a comunidade acadêmica.
+          </p>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </section>
+   
+  <section class="hero is-link">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column">
+            <h1 class="is-size-3-desktop is-size-4-touch has-text-centered has-text-centered-mobile">
+              Desenvolvedores
+            </h1>
+            <br>
+            <div class="columns">
+              <div class="column is-mobile">
+                <div>
+                  <div class="card-image content-img-developer" style="display:flex; align-items:center; justify-content:center">
+                    <figure class="image is-128x128">
+                      <img class="is-rounded" src="{% static 'img/gabriell.jpeg' %}" alt="Gabriell Oliveira">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content has-text-centered">
+                        <p class="title is-5">Gabriell Oliveira</p>
+                        <p class="subtitle is-6">@gabrielloliveir.a</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-mobile">
+                <div class="">
+                  <div class="card-image content-img-developer">
+                    <figure class="image is-128x128">
+                      <img class="is-rounded" src="{% static 'img/bezerra.jpeg' %}" alt="Lucas Bezerra">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content has-text-centered">
+                        <p class="title is-5">Lucas Bezerra</p>
+                        <p class="subtitle is-6">@lucasbezerra26</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-mobile">
+                <div class="">
+                  <div class="card-image content-img-developer">
+                    <figure class="image is-128x128">
+                      <img class="is-rounded" src="{% static 'img/sousa.jpeg' %}" alt="Gabriell Oliveira">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content has-text-centered">
+                        <p class="title is-5">Lucas Sousa</p>
+                        <p class="subtitle is-6">@lucasousa54</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-mobile">
+                <div class="">
+                  <div class="card-image content-img-developer">
+                    <figure class="image is-128x128">
+                      <img class="is-rounded" src="{% static 'img/slelis.jpeg' %}" alt="Gabriell Oliveira">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content has-text-centered">
+                        <p class="title is-5">Samuel Lélis</p>
+                        <p class="subtitle is-6">@samuelplelis</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+</html>
+
+{% block js %}
+  <script>
+    const hero = document.getElementById("hero-home")
+    hero.style.backgroundImage = "none"
+    hero.style.minHeight = "0"
+  </script>
+{% endblock %}
