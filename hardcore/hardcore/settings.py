@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "product",
     "website",
     "django_summernote",
+    "models_logging",
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "models_logging.middleware.LoggingStackMiddleware",
 ]
 
 ROOT_URLCONF = "hardcore.urls"
@@ -140,24 +142,44 @@ SUMMERNOTE_CONFIG = {
     },
 }
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "file": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": "info.log",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["file"],
-            "level": "INFO",
-            "propagate": True,
-        },
-    },
-}
+LOGGING_MODELS = (
+    "product.Product",
+    "partner.Partner",
+    "notice.Notice",
+    "director.Director",
+    "core.Profile",
+    "association.Association",
+    "aaa.AAA",
+)
+
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "handlers": {
+#         "file": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "filename": "debug.log",
+#         },
+#         "file_request": {
+#             "level": "INFO",
+#             "class": "logging.FileHandler",
+#             "filename": "info.log",
+#         },
+#     },
+#     "loggers": {
+#         "django": {
+#             "handlers": ["file"],
+#             "level": "DEBUG",
+#             "propagate": True,
+#         },
+#         "django.request": {
+#             "handlers": ["file_request"],
+#             "level": "INFO",
+#             "propagate": True,
+#         },
+#     },
+# }
 
 try:
     from .settings_local import *
