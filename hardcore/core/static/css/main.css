@@ -115,3 +115,31 @@ a.navbar-item:hover{
     align-items:center;
     justify-content:center;
 }
+
+/*Styles content of the notice*/
+.notice-title{
+   color: #F06923;
+   font-weight: 800;
+   font-family: 'PT Sans', sans-serif;
+}
+
+.notice-date{
+    color: #942977;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.notice-button-view-more{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    color:#F06923;
+    border-color:#F06923;
+    background-color: light;
+}
+
+.notice-button-view-more:hover{
+    color: #942977;
+}
+/*End styles of the notice*/
