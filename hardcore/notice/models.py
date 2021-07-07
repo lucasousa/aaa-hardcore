@@ -14,7 +14,7 @@ CROP_SETTINGS = {'size': (395, 191), 'crop': 'smart'}
 class Notice(models.Model):
     title = models.CharField(blank=False, max_length=200)
     athletic =  models.ForeignKey(AAA, on_delete=models.CASCADE)
-    featured_image = ThumbnailerImageField('Imagem de destaque', resize_source=CROP_SETTINGS, upload_to='upload/noticies')
+    featured_image = ThumbnailerImageField('Imagem de destaque ', resize_source=CROP_SETTINGS, upload_to='upload/noticies')
     text = models.TextField(blank=False)
     published_date = models.DateTimeField(blank=True, null=True)
     slug = models.SlugField(default='', editable=False, max_length=100)
