@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from .models import Partner
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 import os
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -30,6 +31,7 @@ def add(request):
         partner = Partner.objects.create(
             name=name, logo=logo,value=value, description=description)
         partner.save()
+        messages.success(request, 'Parceiro cadastrado com sucesso!')
         return HttpResponseRedirect(reverse('partner:index'))
     return render(request, 'partner/add.html')
 
@@ -57,6 +59,7 @@ def edit(request, id):
             partner.logo = logo
 
         partner.save()
+        messages.success(request, 'Parceiro editado com sucesso!')
         return HttpResponseRedirect(reverse('partner:index'))
     return render(request, 'partner/edit.html', {'objeto': Partner.objects.get(id=id)})
 
@@ -67,12 +70,12 @@ def deletar(request, id):
         return HttpResponseRedirect(reverse('core:my-association'))
     partner = Partner.objects.get(id=id)
     partner.delete()
-    return HttpResponseRedirect(reverse('partner:index'))
+    return JsonResponse({'msg': "Parceiro excluído com sucesso!", 'code': "1"})
 
 
 def views_partner(request, id):
     partner = Partner.objects.get(id=id)
-    res = {
+    context = {
         'objeto': partner
     }
-    return render(request, 'partner/partner_detail.html', res)
+    return render(request, 'partner/partner_detail.html', context)

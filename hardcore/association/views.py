@@ -1,15 +1,12 @@
+from django.http import HttpResponseRedirect, JsonResponse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import Association
 from aaa.models import AAA
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.http import JsonResponse
 import datetime
-from django.contrib.auth.decorators import login_required
-
-
-# Create your views here.
+from django.contrib import messages
 
 
 @login_required
@@ -37,6 +34,7 @@ def add(request):
     association = Association.objects.create(
         expiration_date=expiration_date, user=usuario, athletic=atletica)
     association.save()
+    messages.success(request, 'Associação realizada com sucesso!')
     return JsonResponse({'mensagem': "Associação criada com sucesso!", 'code': "1"})
 
 
@@ -48,4 +46,9 @@ def deletar(request, id):
     user = User.objects.get(id=id)
     association = Association.objects.get(user=user)
     association.delete()
-    return HttpResponseRedirect(reverse('association:index'))
+    return JsonResponse({'msg': "Associação excluída com sucesso!", 'code': "1"})
+
+@login_required
+def student_infos(request, id):
+    user = User.objects.get(id=id)
+    return render(request, 'association/student_details.html', {'object':user})

@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-
+{% load static %}
 {% block title %}Gerenciar parceiros{% endblock %}
 
 {% block content %}
@@ -36,14 +36,14 @@
       </div>
     </div>
 
-    <div class="columns">
+    <div class="columns" id="listItems">
       <div class="column">
         <table class="table is-fullwidth is-narrow">
           <thead>
             <tr>
               <th>#</th>
               <th>Nome</th>
-              <th>Opções</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -56,26 +56,17 @@
                   <span class="icon">
                     <i class="fas fa-edit"></i>
                   </span>
-                  <span>
-                    Editar
-                  </span>
-                </a>
-                <a href="{% url 'partner:deletar' x.id %}" class="button is-danger">
-                  <span class="icon">
-                    <i class="fas fa-trash-alt"></i>
-                  </span>
-                  <span>
-                    Excluir
-                  </span>
                 </a>
                 <a href="{% url 'partner:views_partner' x.id %}" class="button is-info">
                   <span class="icon">
                     <i class="fas fa-eye"></i>
                   </span>
-                  <span>
-                    Visualizar
-                  </span>
                 </a>
+                <a href="#" title="Remover" data-toggle="modal" class="button is-danger deleteItem" data-id="{{x.id}}">
+									<span class="icon">
+										<i class="fas fa-trash-alt"></i>
+									</span>
+								</a>
               </td>
             </tr>
            {% endfor %}
@@ -87,4 +78,53 @@
   </div>
 </section>
 {% endblock %}
-      
+    
+{% block js %}
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+
+	{% if messages %}
+	{% for message in messages %}
+	<script>
+	swal({		
+		"text": "{{message}}",
+		"icon": "success",
+		"button": "Fechar!",
+	})
+	</script>
+	{% endfor %}
+	{% endif %}
+
+	<script>
+	$('#listItems').on('click', '.deleteItem', function (e) {
+		e.preventDefault();
+		const id = $(this).attr("data-id")
+		const urlDel = "http://{{ request.get_host }}/partner/" + "deletar/" + id
+		const linha_editada = $(e.currentTarget).closest('tr')
+		token = "{{csrf_token}}";
+
+		swal({
+			title: "Deletar Permanentemente?",
+			text: "Essa ação não poderá ser desfeita!",
+			icon: "warning",	
+			buttons: true,
+			dangerMode: true,
+		}).then(function (isConfirm) {
+			if(isConfirm){
+				$.ajax({
+					url: urlDel,
+					type: 'get',
+				}).done(function (d) {
+					if (d.code == 1) {
+						swal('Excluido!', 'Parceiro excluído com sucesso!', "success");
+						linha_editada.remove();
+					}
+				}).fail(function (f) {
+					swal('Falha!', 'Erro ao excluir parceiro!', "error");
+				});
+			}			
+		});
+	});
+	</script>
+
+{% endblock %}
