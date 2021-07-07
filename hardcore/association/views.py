@@ -47,3 +47,8 @@ def deletar(request, id):
     association = Association.objects.get(user=user)
     association.delete()
     return JsonResponse({'msg': "Associação excluída com sucesso!", 'code': "1"})
+
+@login_required
+def student_infos(request, id):
+    user = User.objects.get(id=id)
+    return render(request, 'association/student_details.html', {'object':user})
