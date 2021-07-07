@@ -27,11 +27,19 @@
           <div class="column">
             <div class="container">
               <div class="content">
-                <p class="is-size-4">{{ objeto.name }}</p>
+                <p class="is-size-4">{{ objeto.name | capfirst }}</p>
                 <div class="control">
                   <div class="tags has-addons">
                     <span class="tag is-medium is-link">R$</span>
                     <span class="tag is-medium is-light">{{ objeto.value }}</span>
+                  </div>
+                </div>
+                <br>
+                <div class="control">
+                  <div class="tags has-addons">
+                     <span class="tag  is-medium is-bg-orange">R$</span>
+                      <span class="tag  is-medium is-light">{{ objeto.value_partner}}</span>
+                      <span class="tag  is-medium is-white">(Sócio)</span>
                   </div>
                 </div>
                 <p></p>

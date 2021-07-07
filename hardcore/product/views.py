@@ -27,9 +27,10 @@ def add(request):
         description = request.POST['description']
         name = request.POST['name']
         value = request.POST['value']
+        value_partner = request.POST['value_patner']
         athletic = AAA.objects.get(id=1)
         product = Product.objects.create(
-            name=name, image=logo, value=value, description=description, athletic=athletic)
+            name=name, image=logo, value=value,value_partner=value_partner, description=description, athletic=athletic)
         product.save()
         return HttpResponseRedirect(reverse('product:index'))
     return render(request, 'product/add.html')
@@ -43,10 +44,13 @@ def edit(request, id):
         description = request.POST['description']
         name = request.POST['name']
         value = request.POST['value']
+        value_partner = request.POST['value_partner']
         product = Product.objects.get(id=id)
         product.name = name
         product.description = description
         product.value = value
+        product.value_partner = value_partner
+
         if 'logo' in request.FILES:
             logo = request.FILES['logo']
             old_file = settings.MEDIA_ROOT + str(product.image)
