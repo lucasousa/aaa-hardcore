@@ -2,17 +2,19 @@ from django.shortcuts import render
 from .models import Notice
 from django.utils import timezone
 from aaa.models import AAA
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from .forms import NoticeForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
+import os
+from django.conf import settings
 
 @login_required
 def index(request):
     if not request.user.is_superuser:
         return HttpResponseRedirect(reverse('core:my-association'))
-    object_list = Notice.objects.all()  # Pegando todas as notícias do banco de dados
+    object_list = Notice.objects.all()
     if("busca" in request.GET):
         object_list = object_list.filter(title__icontains=request.GET["busca"])
     return render(request, 'notice/manage_notice.html', {'objetos': object_list})
@@ -31,6 +33,7 @@ def new_notice(request):
         notice = Notice.objects.create(
             title=title, featured_image=image, text=text, published_date=published_date, athletic=athletic)
         notice.save()
+        messages.success(request, 'Notícia cadastrada com sucesso.')
         return HttpResponseRedirect(reverse('notice:index'))
 
     notice = NoticeForm()
@@ -41,17 +44,28 @@ def new_notice(request):
 def edit_notice(request, id):
     if not request.user.is_superuser:
         return HttpResponseRedirect(reverse('core:my-association'))
+
     if request.POST:
         title = request.POST['title']
         text = request.POST['text']
-        image = request.FILES['featured_image']
         published_date = timezone.now()
         notice = Notice.objects.get(id=id)
         notice.title = title
         notice.text = text
-        notice.featured_image=image
         notice.published_date = timezone.now()
+
+        if 'featured_image' in request.FILES:
+            image = request.FILES['featured_image']
+            old_file = settings.MEDIA_ROOT + str(notice.featured_image)
+            try:
+                os.remove(old_file)
+            except:
+                pass
+            
+            notice.featured_image=image
+        
         notice.save()
+        messages.success(request, 'Notícia editada com sucesso.')
         return HttpResponseRedirect(reverse('notice:index'))
 
     instance = Notice.objects.get(id=id)
@@ -65,7 +79,7 @@ def delete_notice(request, id):
         return HttpResponseRedirect(reverse('core:my-association'))
     notice = Notice.objects.get(id=id)
     notice.delete()
-    return HttpResponseRedirect(reverse('notice:index'))
+    return JsonResponse({'msg': "Notícia excluída com sucesso!", 'code': "1"})
 
 
 def notice_detail(request, slug):

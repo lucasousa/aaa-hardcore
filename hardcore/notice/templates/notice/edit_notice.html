@@ -19,11 +19,20 @@
                   <input class="input" required="" type="text" name="title" placeholder="Ex.: Conheça os novos parceiros da A.A.A Hardcore" value="{{objeto.title}}">
                 </div>
               </div>
-               <div class="field">
+              <div class="field">
                 <label class="label">Imagem de destaque:</label>
+                
+                {% if objeto.featured_image %}
+                  <div class="columns">
+                    <div class="column">
+                      <a href="{{ objeto.featured_image.url }}" class="button is-dark">Atual: {{ objeto.featured_image.name }}</a>
+                    </div>
+                  </div>
+                {% endif %}
+                
                 <div class="file is-info">
                   <label class="file-label">
-                    <input class="file-input" type="file" name="featured_image"required>
+                    <input class="file-input" type="file" name="featured_image">
                     <span class="file-cta">
                       <span class="file-icon">
                         <i class="fas fa-upload"></i>

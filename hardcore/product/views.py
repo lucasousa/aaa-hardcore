@@ -1,12 +1,13 @@
-from django.shortcuts import render
-from .models import Product
-from .models import AAA
-# Create your views here.
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-import os
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import render
+from django.conf import settings
+from django.urls import reverse
+from .models import Product
+from django.contrib import messages
+from .models import AAA
+import os
+
 
 @login_required
 def index(request):
@@ -31,6 +32,8 @@ def add(request):
         product = Product.objects.create(
             name=name, image=logo, value=value, description=description, athletic=athletic)
         product.save()
+        
+        messages.success(request, 'Produto adicionado com sucesso!')
         return HttpResponseRedirect(reverse('product:index'))
     return render(request, 'product/add.html')
 
@@ -58,6 +61,7 @@ def edit(request, id):
             product.image = logo
 
         product.save()
+        messages.success(request, 'Produto editado com sucesso!')
         return HttpResponseRedirect(reverse('product:index'))
     return render(request, 'product/edit.html', {'objeto': Product.objects.get(id=id)})
 
@@ -68,7 +72,7 @@ def delete(request, id):
         return HttpResponseRedirect(reverse('core:my-association'))
     product = Product.objects.get(id=id)
     product.delete()
-    return HttpResponseRedirect(reverse('product:index'))
+    return JsonResponse({'msg': "Produto excluído com sucesso!", 'code': "1"})
 
 
 def views_product(request, id):
