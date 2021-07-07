@@ -115,3 +115,11 @@ a.navbar-item:hover{
     align-items:center;
     justify-content:center;
 }
+
+#weakPass {
+    display: none;
+}
+
+#passDontMatch {
+    display: none;
+}
