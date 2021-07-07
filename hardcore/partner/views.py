@@ -26,8 +26,9 @@ def add(request):
         logo = request.FILES['logo']
         description = request.POST['description']
         name = request.POST['name']
+        value = request.POST['value']
         partner = Partner.objects.create(
-            name=name, logo=logo, description=description)
+            name=name, logo=logo,value=value, description=description)
         partner.save()
         return HttpResponseRedirect(reverse('partner:index'))
     return render(request, 'partner/add.html')
@@ -40,9 +41,11 @@ def edit(request, id):
     if request.POST:
         description = request.POST['description']
         name = request.POST['name']
+        value = request.POST['value']
         partner = Partner.objects.get(id=id)
         partner.name = name
         partner.description = description
+        partner.value = value
         if 'logo' in request.FILES:
             logo = request.FILES['logo']
             old_file = settings.MEDIA_ROOT + str(partner.logo)
