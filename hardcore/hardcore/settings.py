@@ -31,22 +31,26 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    # local
-    "aaa",
-    "association",
-    "core",
-    "director",
-    "notice",
-    "partner",
-    "product",
-    "website",
-    "django_summernote",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    #thirds_apps
+    'easy_thumbnails',
+
+    #local
+    'aaa',
+    'association',
+    'core',
+    'director',
+    'notice',
+    'partner',
+    'product',
+    'website',
+    'django_summernote',
     "models_logging",
 ]
 

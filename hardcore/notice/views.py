@@ -7,6 +7,7 @@ from django.urls import reverse
 from .forms import NoticeForm
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 def index(request):
     if not request.user.is_superuser:
@@ -24,10 +25,11 @@ def new_notice(request):
     if request.POST:
         title = request.POST['title']
         text = request.POST['text']
+        image = request.FILES['featured_image']
         athletic = AAA.objects.get(id=1)
         published_date = timezone.now()
         notice = Notice.objects.create(
-            title=title, text=text,  published_date=published_date, athletic=athletic)
+            title=title, featured_image=image, text=text, published_date=published_date, athletic=athletic)
         notice.save()
         return HttpResponseRedirect(reverse('notice:index'))
 
@@ -42,10 +44,12 @@ def edit_notice(request, id):
     if request.POST:
         title = request.POST['title']
         text = request.POST['text']
+        image = request.FILES['featured_image']
         published_date = timezone.now()
         notice = Notice.objects.get(id=id)
         notice.title = title
         notice.text = text
+        notice.featured_image=image
         notice.published_date = timezone.now()
         notice.save()
         return HttpResponseRedirect(reverse('notice:index'))
