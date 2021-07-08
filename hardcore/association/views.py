@@ -3,9 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import Association
 from aaa.models import AAA
+from core.models import Profile
 from django.contrib.auth.models import User
 from django.urls import reverse
 import datetime
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
@@ -46,9 +48,46 @@ def deletar(request, id):
     user = User.objects.get(id=id)
     association = Association.objects.get(user=user)
     association.delete()
+    return HttpResponseRedirect(reverse('association:index'))
+
+@login_required
+def edit(request, id):
+
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user=user)
+    if request.method == 'POST':
+        formData = request.POST
+        profile.full_name = formData['name']
+        profile.user.email = formData['email']
+        profile.course_name = formData['course']
+        profile.date_birth = formData['birth-date']
+        profile.sex = formData['sex']
+        profile.save()
+        messages.success(request, 'Informações alteradas com sucesso!')
+        return HttpResponseRedirect(reverse('core:my-association'))
+
+    return render(request, 'association/edit-association.html', {'objeto': profile})
+
+'''
+        description = request.POST['description']
+        name = request.POST['name']
+        partner = Partner.objects.get(id=id)
+        partner.name = name
+        partner.description = description
+        if 'logo' in request.FILES:
+            logo = request.FILES['logo']
+            old_file = settings.MEDIA_ROOT + str(partner.logo)
+            try:
+                os.remove(old_file)
+            except:
+                pass
+
+            partner.logo = logo
+'''
     return JsonResponse({'msg': "Associação excluída com sucesso!", 'code': "1"})
 
 @login_required
 def student_infos(request, id):
     user = User.objects.get(id=id)
     return render(request, 'association/student_details.html', {'object':user})
+
