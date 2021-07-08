@@ -131,6 +131,16 @@
               </span>
             </a>
           </li>
+          <li>
+            <a {% if request.resolver_match.app_name == 'association' %}class="is-bg-orange"{% endif %} href="{% url 'association:edit' request.user.id %}">
+              <span class="icon">
+                <i class="fas fa-user-edit"></i>
+              </span>
+              <span>
+                Editar Informações
+              </span>
+            </a>
+          </li>
         </ul>
         {% endif %}
       </aside>

@@ -121,6 +121,14 @@ a.navbar-item:hover{
     justify-content:center;
 }
 
+#weakPass {
+    display: none;
+}
+
+#passDontMatch {
+    display: none;
+}
+
 /*Styles content of the notice*/
 .notice-title{
    color: #F06923;
@@ -154,3 +162,4 @@ a.navbar-item:hover{
 		margin-bottom: 50vh;
 	}
 }
+
