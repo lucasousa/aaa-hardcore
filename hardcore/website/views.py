@@ -4,6 +4,7 @@ from core.validators import validate_cpf
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -37,7 +38,7 @@ def login_user(request):
         email = email.lower()
         senha = request.POST["password"]
         try:
-            user = User.objects.get(email=email)
+            user = User.objects.get(Q(email=email) | Q(username=email))
             if user:
                 user = authenticate(request, username=user.username, password=senha)
                 if user is not None:
