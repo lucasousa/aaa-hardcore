@@ -74,25 +74,27 @@
                     Informações
                   </span>
                 </a>
-                {% if not x.profile.has_associated %}
-                <a class="button is-success button-associate" data-id="{{ x.id }}">
-                  <span class="icon" data-id="{{ x.id }}">
-                    <i class="fas fa-check"></i>
-                  </span>
-                  <span data-id="{{ x.id }}">
-                    Associar/Renovar
-                  </span>
-                </a>  
-                {% else %}
-                <a href="#" title="Remover" data-toggle="modal" class="button is-danger deleteItem" data-id="{{x.id}}">
-                  <span class="icon">
-                    <i class="fas fa-trash-alt"></i>
-                  </span>
-                  <span>
-                    Excluir Associação
-                  </span>
-                </a>
-                {% endif %}
+                <div id="action-{{x.id}}" style="display: flex;">
+                  {% if not x.profile.has_associated %}
+                  <a class="button is-success button-associate" data-id="{{ x.id }}">
+                    <span class="icon" data-id="{{ x.id }}">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span data-id="{{ x.id }}">
+                      Associar/Renovar
+                    </span>
+                  </a>  
+                  {% else %}
+                  <a href="#" title="Remover" data-toggle="modal" class="button is-danger deleteItem" data-id="{{x.id}}">
+                    <span class="icon">
+                      <i class="fas fa-trash-alt"></i>
+                    </span>
+                    <span>
+                      Excluir Associação
+                    </span>
+                  </a>
+                  {% endif %}
+                </div>
               </td>
             </tr>
            {% endfor %}
@@ -124,26 +126,40 @@
 	{% endfor %}
 	{% endif %}
   <script>
+    function associateAjax(evt){
+      
+      let data = evt.target.getAttribute('data-id')
+
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        location.reload();
+        }
+      };
+      xhttp.open("GET", "{% url 'association:add' %}?data=" + data, true);
+      xhttp.send();
+
+    }
     const button_associate = document.getElementsByClassName('button-associate')
 
     for(let i = 0; i < button_associate.length; i++){
-      button_associate[i].addEventListener('click', (evt) => {
-        let data = evt.target.getAttribute('data-id')
-
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-          location.reload();
-          }
-        };
-        xhttp.open("GET", "{% url 'association:add' %}?data=" + data, true);
-        xhttp.send();
-
-      })
+      button_associate[i].addEventListener('click', (evt) => associateAjax(evt))
     }
-  </script>
 
-	<script>
+    function changeActionButton(id){
+      const div = document.getElementById(`action-${id}`)
+      div.removeChild(div.firstChild)
+      div.innerHTML = `<a class="button is-success button-associate" data-id="${id}">
+                    <span class="icon" data-id="${id}">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span data-id="${id}">
+                      Associar/Renovar
+                    </span>
+                  </a> `
+      div.firstChild.addEventListener('click',  (evt) => associateAjax(evt))
+    }
+
 	$('#listItems').on('click', '.deleteItem', function (e) {
 		e.preventDefault();
 		const id = $(this).attr("data-id")
@@ -164,7 +180,11 @@
 				}).done(function (d) {
 					if (d.code == 1) {
 						swal('Excluído!', 'Associação excluída com sucesso!', "success");
-						linha_editada.remove();
+						// linha_editada.remove();
+            // location.reload();
+
+            changeActionButton(id)
+
 					}
 				}).fail(function (f) {
 					swal('Falha!', 'Erro ao excluir associação!', "error");

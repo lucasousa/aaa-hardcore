@@ -53,7 +53,7 @@ def deletar(request, id):
     user = User.objects.get(id=id)
     association = Association.objects.get(user=user)
     association.delete()
-    return HttpResponseRedirect(reverse("association:index"))
+    return JsonResponse({"mensagem": "Associação removida com sucesso!", "code": "1"})
 
 
 @login_required
