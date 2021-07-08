@@ -52,7 +52,7 @@
                 <th>#</th>
                 <th>Nome</th>
                 <th>Cargo</th>
-                <th>Opções</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -62,6 +62,14 @@
                 <td>{{x.user.profile.full_name}}</td>
                 <td>{{ x.office }}</td>
                 <td>
+                  <a href="{% url 'association:student' x.id %}" class="button is-info">
+                    <span class="icon">
+                      <i class="fas fa-eye"></i>
+                    </span>
+                    <span>
+                      Informações
+                    </span>
+                  </a>
                   <a href="{% url 'director:delete' x.id %}" class="button is-danger">
                     <span class="icon">
                       <i class="fas fa-trash-alt"></i>

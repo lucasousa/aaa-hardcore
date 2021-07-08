@@ -126,3 +126,5 @@ settings_local.py
 
 gunicorn.conf.txt
 nginx.txt
+
+.idea
