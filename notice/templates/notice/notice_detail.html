@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ objeto.title }} | AAA HardCore</title>
+  <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+</head>
+<body>
+  <div class="degradee-initial">
+    <section class="hero is-link-page is-link is-medium">        
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title">
+            {{ objeto.title }}
+          </h1>
+          <h2 class="subtitle">
+            {{ objeto.published_date }}
+          </h2>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="hero notice-content">
+    <div class="hero-body">
+      <div class="container">
+        <section class="section">
+          <div class="container">
+            <p class="control">
+              {{ objeto.text|safe }}
+            </p>
+          </div>
+        </section>  
+      </div>
+    </div>
+  </section>
+
+  
+
+  <footer class="footer has-background-black has-text-white">
+    <div class="content has-text-centered">
+      <p>
+        Todos os direitos reservados - 2019 {% now "Y" %}.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

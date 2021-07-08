@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} Informações do Estudante {% endblock %}
+
+{% block content %}
+<section class="section">
+	<div class="container box">
+		<div class="columns">
+			<article class="media">
+				<figure class="media-left">
+				</figure>
+				<div class="media-content">
+					<div class="content">
+						<p>
+							<h1 class="title is-5">{{object.profile.full_name }}</h1>
+							<br>
+							<small>
+							<span class="icon has-text-info">
+								<i class="fas fa-envelope"></i>
+							</span>
+							{{ object.email }} 
+							<span class="icon has-text-info">
+								<i class="fas fa-user-graduate"></i>
+							</span>
+							{{ object.profile.course_name }}
+							</small>
+						</p>
+					</div>
+
+					<article class="media">
+						<figure class="media-left">
+						</figure>
+						<div class="media-content">
+							<div class="content">
+								<p>
+									<strong>Sexo</strong>
+									{% if object.profile.sex == 'M' %}
+										<li>Masculino</li>
+									{% else %}
+										<li>Feminino</li>
+									{% endif %}
+									<br>
+									<strong>CPF</strong>
+									<br>
+									<li> {{object.profile.cpf}} </li>
+									<br>
+									<strong>Curso</strong>
+									<br>
+									<li>{{object.profile.course_name}}</li>
+									<br>
+									<strong>CPF</strong>
+									<br>
+									<li>{{object.profile.cpf}}</li>
+									<br>
+								</p>
+							</div>
+						</div>
+					</article>
+				</div>
+			</article>
+		</div>
+	</div>
+</section>
+{% endblock %}

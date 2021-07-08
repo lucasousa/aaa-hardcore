@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Minha associação{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Bem vindo {{ request.user.profile.full_name }}!</h1>
+    <h2 class="subtitle">
+      Este é o seu perfil como <strong>sócio</strong> da atlética.
+    </h2>
+    <div class="columns">
+      <div class="column">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              Status: {% if request.user.profile.has_associated %}Associado{% else %}Não Associado{% endif %}
+            </p>
+          </header>
+          <div class="card-content">
+            {% if request.user.profile.has_associated %}
+            <div class="tags has-addons">
+              <span class="tag is-medium is-link">Data de expiração: </span>
+              <span class="tag is-medium is-light">{{ association.expiration_date|date:"d/m/Y" }}</span>
+            </div>
+            <div class="tags has-addons">
+              <span class="tag is-medium is-link">Atlética: </span>
+              <span class="tag is-medium is-light">{{ association.athletic.name }}</span>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+{% block js %}
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="{% static 'js/jquery.js' %}"></script>
+
+	{% if messages %}
+	{% for message in messages %}
+	<script>
+	swal({		
+		"text": "{{message}}",
+		"icon": "success",
+		"button": "Fechar!",
+	})
+	</script>
+	{% endfor %}
+	{% endif %}
+{% endblock %}

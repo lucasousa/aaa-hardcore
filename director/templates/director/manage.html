@@ -1,0 +1,120 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Gerenciar Diretores{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Gerenciar Diretores</h1>
+    
+    <div class="columns">
+      <div class="column">
+        <form action="" method="get"> {% csrf_token %}
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input name="busca" type="text" class="input" placeholder="Digite o nome do diretor">
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-link">
+                <span class="icon">
+                  <i class="fas fa-search"></i>
+                </span>
+                <span>
+                  Pesquisar
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <a href="{% url 'director:add' %}" class="button is-link">Cadastrar Diretor</a>
+      </div>
+    </div>
+
+    {% if message %}
+    <div class="columns">
+      <div class="column">
+        <h2 class="subtitle {{ class }}">{{ message }}</h2>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="columns">
+      <div class="column">
+        {% if users %}
+          <table class="table is-fullwidth is-narrow">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+             {% for x in users %}
+             <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{x.user.profile.full_name}}</td>
+                <td>{{ x.office }}</td>
+                <td>
+                  <a href="{% url 'association:student' x.id %}" class="button is-info">
+                    <span class="icon">
+                      <i class="fas fa-eye"></i>
+                    </span>
+                    <span>
+                      Informações
+                    </span>
+                  </a>
+                  <a href="{% url 'director:delete' x.id %}" class="button is-danger">
+                    <span class="icon">
+                      <i class="fas fa-trash-alt"></i>
+                    </span>
+                    <span>
+                      Excluir
+                    </span>
+                  </a>
+                </td>
+              </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          {% if 'busca' in request.GET %}
+            <h2 class="subtitle has-text-danger">Não foi possível encontrar diretores com esse nome.</h2>
+          {% else %}
+            <h2 class="subtitle has-text-danger">Você não possui diretores cadastrados</h2>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const button_associate = document.getElementsByClassName('button-associate')
+
+  for(let i = 0; i < button_associate.length; i++){
+    button_associate[i].addEventListener('click', (evt) => {
+      let data = evt.target.getAttribute('data-id')
+
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+         location.reload();
+        }
+      };
+      xhttp.open("GET", "{% url 'association:add' %}?data=" + data, true);
+      xhttp.send();
+
+    })
+  }
+
+</script>
+
+{% endblock %}

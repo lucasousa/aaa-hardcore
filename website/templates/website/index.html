@@ -1,0 +1,186 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Bem vindo{% endblock %}
+
+{% block hero %}
+<div class="hero-body">
+  <div class="container has-text-centered welcome-association">
+    <h1 class="title">
+      Bem-vindo(a)
+    </h1>
+    <h2 class="subtitle">
+      Conheça a Hardcore, a A.A.A de Sistemas
+    </h2>
+    <p>
+      <a href="{% url 'website:signup' %}" class="button is-rounded is-bg-orange has-text-white is-medium">
+        Fazer Associação
+      </a>
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="hero is-link">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-4">
+          <figure class="image">
+            <img src="static/img/escudo.png">
+          </figure>
+        </div>
+        <div class="column">
+          <h1 class="is-size-3-desktop is-size-4-touch has-text-centered has-text-centered-mobile">
+            Nossa Missão.
+          </h1>
+          <br>
+          <p class="control is-size-5-desktop is-size-6-touch">
+            Nosso principal objetivo é promover integração e interação entre todos que compõem a comunidade acadêmica. Entre nossos desígnios estão a realização de campeonatos de esportes diversos e também de esportes eletrônicos, eventos na área de Tecnologia da Informação e campanhas sociais!
+          </p>
+        </div>
+      </div>  
+    </div>
+  </div>
+</section>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">Produtos</h1>
+      <div class="columns is-multiline">
+        {% for obj in objeto %}
+          <div class="column is-3">
+            <div class="card shadow-effect content-card">
+              <div class="card-image">
+                <a href="{% url 'product:views_product' obj.id %}">
+                    <figure class="image">
+                      <img class="image-card" src="{{ obj.image.url }}" alt="Placeholder image">
+                    </figure>
+                </a>
+              </div>
+              <div class="card-content has-background-grey-lighter">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ obj.name }}</p>
+                  </div>
+                </div>
+
+                <div class="content">
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <span class="tag is-link">R$</span>
+                      <span class="tag is-light">{{ obj.value }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <span class="tag is-bg-orange">R$</span>
+                      <span class="tag is-light">{{ obj.value_partner}}</span>
+                      <span class="tag " style="background-color: #dbdbdb;">(Sócio)</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        <div class="control has-text-centered">
+          <a href="{% url 'website:product_list' %}" class="button is-bg-orange">
+            Visualizar todos
+          </a>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">Parceiros</h1>
+      <div class="columns is-multiline">
+        {% for obj in partner %}
+          <div class="column is-3">
+            <div class="card shadow-effect content-card">
+              <div class="card-image">
+                <a href="{% url 'partner:views_partner' obj.id %}">
+                    <figure class="image">
+                      <img class="image-card" src="{{ obj.logo.url }}" alt="Placeholder image">
+                    </figure>
+                </a>
+              </div>
+              <div class="card-content has-background-grey-lighter">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ obj.name }}</p>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <span class="tag is-bg-orange">%</span>
+                      <span class="tag is-light">{{ obj.value}}</span>
+                      <span class="tag " style="background-color: #dbdbdb;">(Desconto para sócio)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        <div class="control has-text-centered">
+          <a href="{% url 'website:partner_list' %}" class="button is-bg-orange">
+            Visualizar todos
+          </a>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section space-section has-background-light">
+  <h1 class="title has-text-centered">Últimas Notícias</h1>
+  <div class="container has-text-centered" style="padding: 2rem">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+            <div class="columns is-multiline">
+                {% for n in  notice %}
+                <div class="column">
+                  <article class="columns is-multiline">
+                    <div class="column is-12">
+                        <img src="{{n.featured_image.url}}" alt="Featured Image">
+                    </div>
+                    <div class="column">
+                        <span class="heading notice-date">{{n.published_date}}</span>
+                        <h1 class="has-text-left notice-title">{{n.title}}</h1>
+                        <br>
+                        <p class="has-text-left">
+                            {{ n.text|striptags|safe|slice:":60" }}...
+                        </p>
+                        <br>
+                        <span class="has-addons-left">
+                          <a href="{% url 'notice:detail_notice' n.slug %}">
+                            <button class="button is-outlined notice-button-view-more">ver mais</button>
+                          </a>
+                        </span>
+                    </div>
+                  </article>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="control has-text-centered">
+    <a href="{% url 'website:notice_list' %}" class="button is-bg-orange">
+      Visualizar todos
+    </a>
+  </div>
+</section>
+
+
+{% endblock %}

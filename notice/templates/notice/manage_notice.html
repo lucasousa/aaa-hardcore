@@ -1,0 +1,140 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Gerenciar Notícias{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Gerenciar Notícias</h1>
+    <div class="columns">
+      <div class="column">
+        <form action="" method="get">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input name="busca" type="text" class="input" placeholder="Digite o título da notícia">
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-link">
+                <span class="icon">
+                  <i class="fas fa-search"></i>
+                </span>
+                <span>
+                  Pesquisar
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <a href="{% url 'notice:new_notice' %}" class="button is-link">
+          Adicionar uma nova notícia
+        </a>
+      </div>
+    </div>
+
+    <div class="columns" id="listItems">
+      <div class="column">
+        {% if objetos %}
+        <table class="table is-fullwidth is-narrow">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Título</th>
+              <th>Data de Publicação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+           {% for aux in objetos %}
+           <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{aux.title}}</td>
+              <td>{{aux.published_date}}</td>
+              <td>
+                <a href="{% url 'notice:edit_notice' aux.id %}" class="button is-warning">
+                  <span class="icon">
+                    <i class="fas fa-edit"></i>
+                  </span>                  
+                </a>
+                <a href="{% url 'notice:detail_notice' aux.slug %}" class="button is-info">
+                  <span class="icon">
+                    <i class="fas fa-eye"></i>
+                  </span>
+                </a>
+                <a href="#" title="Remover" data-toggle="modal" class="button is-danger deleteItem" data-id="{{aux.id}}">
+									<span class="icon">
+										<i class="fas fa-trash-alt"></i>
+									</span>
+								</a>
+              </td>
+            </tr>
+           {% endfor %}
+          {% else %}
+            <td>
+              <h5>Nenhuma notícia encontrada.</h5>
+            </td>
+          {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+{% block js %}
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+
+	{% if messages %}
+	{% for message in messages %}
+	<script>
+	swal({		
+		"text": "{{message}}",
+		"icon": "success",
+		"button": "Fechar!",
+	})
+	</script>
+	{% endfor %}
+	{% endif %}
+
+	<script>
+	$('#listItems').on('click', '.deleteItem', function (e) {
+		e.preventDefault();
+		const id = $(this).attr("data-id")
+		const urlDel = "http://{{ request.get_host }}/notice/" + "delete_notice/" + id
+		const linha_editada = $(e.currentTarget).closest('tr')
+		token = "{{csrf_token}}";
+
+		swal({
+			title: "Deletar Permanentemente?",
+			text: "Essa ação não poderá ser desfeita!",
+			icon: "warning",	
+			buttons: true,
+			dangerMode: true,
+		}).then(function (isConfirm) {
+			if(isConfirm){
+				$.ajax({
+					url: urlDel,
+					type: 'get',
+				}).done(function (d) {
+					if (d.code == 1) {
+						swal('Excluido!', 'Noticia excluida com sucesso!', "success");
+						linha_editada.remove();
+					}
+				}).fail(function (f) {
+					swal('Falha!', 'Erro ao excluir a noticia!', "error");
+				});
+			}			
+		});
+	});
+	</script>
+
+{% endblock %}
+      

@@ -1,0 +1,211 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block hero %}
+<div class="hero-body">
+  <div class="container has-text-centered">
+    <div class="columns">
+      <div class="column is-4 is-offset-4">
+        <div class="box">
+          <form action="" method="post">
+            {% csrf_token %}
+            <p class="is-size-3">Cadastro</p>
+            {% if message %}
+            <p class="is-size-6 {{ class }}">{{ message }}</p>
+            {% endif %}
+            <div class="field">
+              <label class="label">Nome completo</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="text" placeholder="Ex.: João da Silva" name="name" required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="text" placeholder="exemplo@email.com" name="email"required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="label">Senha</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="password" placeholder="******" name="password" oninput="passValidation()" id="pass" required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </div>
+            </div>
+
+            <div id="weakPass">
+              <h6 class="help has-text-danger"> A senha deve ter mais de 8 caracteres com letras maiúsculas, minúsculas, caracteres especiais e números </h5>
+            </div>
+
+            <div class="field">
+              <label class="label">Repetir Senha</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="password" placeholder="******" oninput="eqPass()" id="rep-pass"  required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </div>
+            </div>
+            
+            <div id="passDontMatch">
+              <h6 class="help has-text-danger"> A senhas não conferem</h5>
+            </div>
+            
+
+            <div class="field">
+              <label class="label">Curso que você faz</label>
+              <div class="control has-icons-left">
+                <div class="select is-fullwidth">
+                  <select name="course" required>
+                    <option selected value="Sistemas de Informação">Sistemas de Informação</option>
+                    <option value="Ciências da Computação">Ciências da Computação</option>
+                    <option value="Análise e Desenvolvimento de Sistemas">Análise e Desenvolvimento de Sistemas</option>
+                    <option value="Sistemas para Internet">Sistemas para Internet</option>
+                    <option value="Licenciatura em Informática">Licenciatura em Informática</option>
+                    <option value="História">História</option>
+                    <option value="Biologia">Biologia</option>
+                    <option value="Enfermagem">Enfermagem</option>
+                    <option value="Medicina">Medicina</option>
+                    <option value="Matemática">Matemática</option>
+                    <option value="Administração">Administração</option>
+                    <option value="Pedagogia">Pedagogia</option>
+                    <option value="Letras">Letras</option>
+                    <option value="Outro">Outro</option>
+                  </select>
+                </div>
+                <div class="icon is-small is-left">
+                  <i class="fas fa-university"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">CPF</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="text" placeholder="Seu CPF" name="cpf" id="cpf"required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-id-card"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Data de Nascimento</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="date" placeholder="" name="birth-date" required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-birthday-cake"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Sexo</label>
+              <div class="control has-icons-left has-icons-right">
+                <div class="control">
+                  <label class="radio">
+                    <input type="radio" name="sex" value="F" required>
+                    Feminino
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="sex" value="M" required>
+                    Masculino
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="field">
+              <p class="control">
+                Já se cadastrou? <a href="{% url 'website:login' %}">Faça Login aqui.</a>
+              </p>
+            </div>
+            
+            <div class="field">
+              <div class="control">
+                <button id="submit" class="button is-bg-orange">Cadastrar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+<script>
+  $(document).ready(function(){
+    $('#cpf').mask('000.000.000-00', {reverse: true});
+  });
+</script>
+<script>
+function passValidation() {
+    let hasUpperCase = /[A-Z]/;
+    let hasLowerCase = /[a-z]/; 
+    let hasSpecialCharachters = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
+    let hasNumber = /[0-9]/;
+    let password = document.getElementById('pass').value;
+    if (password.length < 8 && password.length != 0){
+      let e = document.querySelector('#weakPass')
+      e.style.display = 'block';
+      document.querySelector('#submit').disabled = true;
+      return false;
+    }
+    
+    let countLower = 0, countUpper = 0, countSpecial = 0, countNumber = 0;
+
+    for(let i = 0; i < password.length; i++){
+        if(hasUpperCase.test(password[i]))
+            countUpper++;
+        else if(hasLowerCase.test(password[i]))
+            countLower++;
+        else if(hasNumber.test(password[i]))
+            countNumber++;
+        else if(hasSpecialCharachters.test(password[i]))
+            countSpecial++;
+    }
+
+    if ((countNumber && countSpecial && countUpper && countLower) == 0 && password.length != 0){
+      let e = document.querySelector('#weakPass')
+      e.style.display = 'block';
+      document.querySelector('#submit').disabled = true;
+      return false;
+    }
+    
+    let e = document.querySelector('#weakPass')
+    e.style.display = 'none';
+    document.querySelector('#submit').disabled = false;
+    return true;
+}
+
+function eqPass(){
+  if (document.getElementById('pass').value != document.getElementById('rep-pass').value){
+    let e = document.querySelector('#passDontMatch')
+    e.style.display = 'block';
+    document.querySelector('#submit').disabled = true;
+    return false;
+  }
+  let e = document.querySelector('#passDontMatch')
+  e.style.display = 'none';
+  document.querySelector('#submit').disabled = false;
+}
+</script>
+
+{% endblock %}
