@@ -5,6 +5,11 @@
   background-position: bottom -35px right;
 }
 
+.navbar-burger span {
+  height: 0.1rem;
+  width: 1.3rem;
+}
+
 .navbar-dashboard{
   background-color: black;
 }
@@ -123,3 +128,38 @@ a.navbar-item:hover{
 #passDontMatch {
     display: none;
 }
+
+/*Styles content of the notice*/
+.notice-title{
+   color: #F06923;
+   font-weight: 800;
+   font-family: 'PT Sans', sans-serif;
+}
+
+.notice-date{
+    color: #942977;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.notice-button-view-more{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    color:#F06923;
+    border-color:#F06923;
+    background-color: light;
+}
+
+.notice-button-view-more:hover{
+    color: #942977;
+}
+/*End styles of the notice*/
+
+@media screen and (max-width: 1023px) {
+	.welcome-association{
+		margin-bottom: 50vh;
+	}
+}
+

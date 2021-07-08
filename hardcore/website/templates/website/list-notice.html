@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{% block title %}{% endblock %} | AAA HardCore</title>
+  <title>{% block title %}Notícias{% endblock %} | AAA HardCore</title>
   <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
@@ -56,7 +56,7 @@
                 </a>
                 <a class="navbar-item" href="{% url 'website:about' %}">
                   <span class="icon">
-                    <i class="fas fa-file-alt"></i>
+                    <i class="fas fa-users"></i>
                   </span>
                   <span>Quem somos</span>
                 </a>
@@ -79,31 +79,34 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title has-text-centered">Notícias</h1>
-        <div class="columns is-multiline">
-        {% for obj in notice %}
-          <div class="column is-4">
-            <div class="card hover-shadow">
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-6">{{ obj.title }}</p>
-                    <p class="subtitle is-7">{{ obj.published_date }}</p>
+        <div class="columns">
+          <div class="column is-10 is-offset-1">
+              <div class="columns is-multiline">
+                  {% for n in  notice %}
+                  <div class="column">
+                    <article class="columns is-multiline">
+                      <div class="column is-12">
+                          <img src="{{n.featured_image.url}}" alt="Featured Image">
+                      </div>
+                      <div class="column">
+                          <span class="heading notice-date">{{n.published_date}}</span>
+                          <h1 class="has-text-left notice-title">{{n.title}}</h1>
+                          <br>
+                          <p class="has-text-left">
+                              {{ n.text|striptags|safe|slice:":60" }}...
+                          </p>
+                          <br>
+                          <span class="has-addons-left">
+                            <a href="{% url 'notice:detail_notice' n.slug %}">
+                              <button class="button is-outlined notice-button-view-more">ver mais</button>
+                            </a>
+                          </span>
+                      </div>
+                    </article>
                   </div>
-                </div>
-
-                <div class="content">
-                  <div class="content">
-                    {{ obj.text|slice:"50"|safe}}
-                    <br>
-                    <a href="{% url 'notice:detail_notice' obj.slug %}" class="button is-dark is-outlined">
-                      Visualizar
-                    </a>
-                  </div>
-                </div>
+                  {% endfor %}
               </div>
             </div>
-          </div>
-        {% endfor%}
         </div>
       </div>
     </div>

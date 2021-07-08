@@ -4,7 +4,7 @@
 
 {% block hero %}
 <div class="hero-body">
-  <div class="container has-text-centered">
+  <div class="container has-text-centered welcome-association">
     <h1 class="title">
       Bem-vindo(a)
     </h1>
@@ -69,11 +69,21 @@
                 <div class="content">
                   <div class="control">
                     <div class="tags has-addons">
-                      <span class="tag is-bg-orange">R$</span>
+                      <span class="tag is-link">R$</span>
                       <span class="tag is-light">{{ obj.value }}</span>
                     </div>
                   </div>
                 </div>
+                <div class="content">
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <span class="tag is-bg-orange">R$</span>
+                      <span class="tag is-light">{{ obj.value_partner}}</span>
+                      <span class="tag " style="background-color: #dbdbdb;">(Sócio)</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -109,6 +119,15 @@
                     <p class="title is-4">{{ obj.name }}</p>
                   </div>
                 </div>
+                <div class="content">
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <span class="tag is-bg-orange">%</span>
+                      <span class="tag is-light">{{ obj.value}}</span>
+                      <span class="tag " style="background-color: #dbdbdb;">(Desconto para sócio)</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -123,42 +142,45 @@
     </div>
 </section>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title has-text-centered">Últimas Notícias</h1>
-      <div class="columns is-multiline">
-        {% for obj in notice %}
-          <div class="column is-4">
-            <div class="card hover-shadow">
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-6">{{ obj.title }}</p>
-                    <p class="subtitle is-7">{{ obj.published_date }}</p>
-                  </div>
+<section class="section space-section has-background-light">
+  <h1 class="title has-text-centered">Últimas Notícias</h1>
+  <div class="container has-text-centered" style="padding: 2rem">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+            <div class="columns is-multiline">
+                {% for n in  notice %}
+                <div class="column">
+                  <article class="columns is-multiline">
+                    <div class="column is-12">
+                        <img src="{{n.featured_image.url}}" alt="Featured Image">
+                    </div>
+                    <div class="column">
+                        <span class="heading notice-date">{{n.published_date}}</span>
+                        <h1 class="has-text-left notice-title">{{n.title}}</h1>
+                        <br>
+                        <p class="has-text-left">
+                            {{ n.text|striptags|safe|slice:":60" }}...
+                        </p>
+                        <br>
+                        <span class="has-addons-left">
+                          <a href="{% url 'notice:detail_notice' n.slug %}">
+                            <button class="button is-outlined notice-button-view-more">ver mais</button>
+                          </a>
+                        </span>
+                    </div>
+                  </article>
                 </div>
-
-                <div class="content">
-                  <div class="content">
-                    {{ obj.text|safe|slice:"0:50"}}
-                    <br>
-                    <a href="{% url 'notice:detail_notice' obj.slug %}" class="button is-dark is-outlined">
-                      Visualizar
-                    </a>
-                  </div>
-                </div>
-              </div>
+                {% endfor %}
             </div>
-          </div>
-        {% endfor%}
-      </div>
-      <div class="control has-text-centered">
-        <a href="{% url 'website:notice_list' %}" class="button is-bg-orange">
-          Visualizar todos
-        </a>
-      </div>
+        </div>
     </div>
   </div>
+  <div class="control has-text-centered">
+    <a href="{% url 'website:notice_list' %}" class="button is-bg-orange">
+      Visualizar todos
+    </a>
+  </div>
 </section>
+
+
 {% endblock %}

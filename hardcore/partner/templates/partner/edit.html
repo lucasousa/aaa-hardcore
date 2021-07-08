@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-
+{% load l10n %}
 {% block title %}Editar Parceiros{% endblock %}
 
 {% block content %}
@@ -52,7 +52,12 @@
                   <textarea class="textarea" placeholder="Digite uma breve descrição do parceiro" name="description">{{objeto.description}}</textarea>
                 </div>
               </div>
-              
+              <div class="field">
+                <label class="label">Valor do desconto (%)</label>
+                <div class="control">
+                  <input class="input" type="number" name="value" placeholder="Ex.: Digite o valor do produto" value="{{objeto.value|unlocalize}}" step="0.05" min="0">
+                </div>
+              </div>
               <div class="field is-grouped">
                 <div class="control">
                   <button class="button is-link">Editar</button>
