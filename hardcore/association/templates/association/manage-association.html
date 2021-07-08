@@ -44,62 +44,66 @@
     <div class="columns" id="listItems">
       <div class="column">
         {% if objetos %}
-        <table class="table is-fullwidth is-narrow">
-          <thead>
+        <div class="table-container">
+          <table class="table is-fullwidth is-narrow is-mobile">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for x in objetos %}
             <tr>
-              <th>#</th>
-              <th>Nome</th>
-              <th>Status</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-           {% for x in objetos %}
-           <tr>
-              <td>{{forloop.counter}}</td>
-              <td>{{x.profile.full_name}}</td>
-              <td>
-                {% if x.profile.has_associated %}
-                <span class="tag is-medium is-link">Associado</span>
-                {% else %}
-                <span class="tag is-medium is-warning">Não associado</span>   
-                {% endif %}
-              </td>
-              <td>
-                <a href="{% url 'association:student' x.id %}" class="button is-info">
-                  <span class="icon">
-                    <i class="fas fa-eye"></i>
-                  </span>
-                  <span>
-                    Informações
-                  </span>
-                </a>
-                <div id="action-{{x.id}}" style="display: flex;">
-                  {% if not x.profile.has_associated %}
-                  <a class="button is-success button-associate" data-id="{{ x.id }}">
-                    <span class="icon" data-id="{{ x.id }}">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    <span data-id="{{ x.id }}">
-                      Associar/Renovar
-                    </span>
-                  </a>  
+                <td>{{forloop.counter}}</td>
+                <td>{{x.profile.full_name}}</td>
+                <td>
+                  {% if x.profile.has_associated %}
+                  <span class="tag is-medium is-link">Associado</span>
                   {% else %}
-                  <a href="#" title="Remover" data-toggle="modal" class="button is-danger deleteItem" data-id="{{x.id}}">
-                    <span class="icon">
-                      <i class="fas fa-trash-alt"></i>
-                    </span>
-                    <span>
-                      Excluir Associação
-                    </span>
-                  </a>
+                  <span class="tag is-medium is-warning">Não associado</span>   
                   {% endif %}
-                </div>
-              </td>
-            </tr>
-           {% endfor %}
-          </tbody>
-        </table>
+                </td>
+                <td style="display: flex; justify-content: flex-start;">
+                  <div style="margin-right: 8px;">
+                    <a href="{% url 'association:student' x.id %}" class="button is-info">
+                      <span class="icon">
+                        <i class="fas fa-eye"></i>
+                      </span>
+                      <span>
+                        Informações
+                      </span>
+                    </a>
+                  </div>
+                  <div id="action-{{x.id}}">
+                    {% if not x.profile.has_associated %}
+                    <a class="button is-success button-associate" data-id="{{ x.id }}">
+                      <span class="icon" data-id="{{ x.id }}">
+                        <i class="fas fa-check"></i>
+                      </span>
+                      <span data-id="{{ x.id }}">
+                        Associar/Renovar
+                      </span>
+                    </a>  
+                    {% else %}
+                    <a href="#" title="Remover" data-toggle="modal" class="button is-danger deleteItem" data-id="{{x.id}}">
+                      <span class="icon">
+                        <i class="fas fa-trash-alt"></i>
+                      </span>
+                      <span>
+                        Excluir Associação
+                      </span>
+                    </a>
+                    {% endif %}
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
         {% else %}
         <h2 class="subtitle has-text-danger">Não foi encontrado usuários com os parâmetros informados.</h2>
         {% endif %}
