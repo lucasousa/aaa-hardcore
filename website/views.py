@@ -159,3 +159,7 @@ def partner_list(request):
 
 def about(request):
     return render(request, "website/about.html")
+
+
+def contact(request):
+    return render(request, "website/contact.html")

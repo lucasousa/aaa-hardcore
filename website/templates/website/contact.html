@@ -10,6 +10,34 @@
   <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+  <style>
+
+    .media-left img {
+      border-radius: 50%;
+    }
+    .media-content p {
+      font-size: 14px;
+      line-height: 2.3;
+      font-weight: 700;
+      color: #8F99A3;
+    }
+    article.post {
+      margin: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #E6EAEE;
+    }
+    article.post:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .menu-list li{
+      padding: 5px;
+    }
+    .box{
+
+    }
+  </style>
+
 </head>
 
 <body>
@@ -80,54 +108,83 @@
         </header>
       </div>
   </div>
+    <br>
+        <section class="container">
+			<div class="columns">
+				<div class="column is-10 is-offset-1">
+					<div class="box content">
+						<article class="post">
+							<h4>Associação: Quanto tempo dura a associação ?</h4>
+							<div class="media">
+								<div class="media-content">
+									<div class="content">
+										<p>
+											Pode ser de 1 ano a 6 meses, fiquem atentos as notícias da atletica &nbsp;
+											<span class="tag">Resposta</span>
+										</p>
+									</div>
+								</div>
+{#								<div class="media-right">#}
+{#									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 1</span>#}
+{#								</div>#}
+							</div>
+						</article>
+						<article class="post">
+							<h4> Quando começa o período de associação ?</h4>
+							<div class="media">
+								<div class="media-content">
+									<div class="content">
+										<p>
+											Geralmente no começo do período &nbsp;
+											<span class="tag">Resposta</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</article>
+                        <article class="post">
+							<h4> Como eu consigo pegar o desconto dos parceiros ?</h4>
+							<div class="media">
+								<div class="media-content">
+									<div class="content">
+										<p>
+											Basta apresentar a carteirinha de associado na hora do pagamento &nbsp;
+											<span class="tag">Resposta</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</article>
+                        <article class="post">
+							<h4> Quem não é sócio pode comprar ?</h4>
+							<div class="media">
+								<div class="media-content">
+									<div class="content">
+										<p>
+											Sim, existe o preço para não sócio e para sócio &nbsp;
+											<span class="tag">Resposta</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</article>
 
-  <section class="hero is-content-list">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title has-text-centered">Notícias</h1>
-        <div class="columns">
-          <div class="column is-10 is-offset-1">
-              <div class="columns is-multiline">
-                  {% for n in  notice %}
-                  <div class="column is-4">
-                    <article class="columns is-multiline">
-                      <div class="column is-12">
-                          <img src="{{n.featured_image.url}}" alt="Featured Image">
-                      </div>
-                      <div class="column">
-                          <span class="heading notice-date">{{n.published_date}}</span>
-                          <h1 class="has-text-left notice-title">{{n.title}}</h1>
-                          <br>
-                          <p class="has-text-left">
-                              {{ n.text|striptags|safe|slice:":60" }}...
-                          </p>
-                          <br>
-                          <span class="has-addons-left">
-                            <a href="{% url 'notice:detail_notice' n.slug %}">
-                              <button class="button is-outlined notice-button-view-more">ver mais</button>
-                            </a>
-                          </span>
-                      </div>
-                    </article>
-                  </div>
-                  {% endfor %}
-              </div>
+					</div>
+				</div>
+			</div>
+		</section>
+  <br>
+
+		  <footer class="footer has-background-black has-text-white">
+            <div class="content has-text-centered">
+              <p>
+                <strong class="has-text-white">
+                  < AAA HardCore /></strong> by <a href="">Los Hugos</a>.
+                <br>
+                Todos os direitos reservados - {% now "Y" %}.
+              </p>
             </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer has-background-black has-text-white">
-    <div class="content has-text-centered">
-      <p>
-        <strong class="has-text-white">
-          < AAA HardCore /></strong> by <a href="">Los Hugos</a>.
-        <br>
-        Todos os direitos reservados - {% now "Y" %}.
-      </p>
-    </div>
-  </footer>
-</body>
-
+        </footer>
+		<script async type="text/javascript" src="../js/bulma.js"></script>
+	</body>
 </html>
