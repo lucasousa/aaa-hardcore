@@ -60,11 +60,13 @@
                 <td>{{forloop.counter}}</td>
                 <td>{{x.profile.full_name}}</td>
                 <td>
-                  {% if x.profile.has_associated %}
-                  <span class="tag is-medium is-link">Associado</span>
-                  {% else %}
-                  <span class="tag is-medium is-warning">Não associado</span>   
-                  {% endif %}
+                  <div id="badge-associate">
+                    {% if x.profile.has_associated %}
+                    <span class="tag is-medium is-link">Associado</span>
+                    {% else %}
+                    <span class="tag is-medium is-warning">Não associado</span>   
+                    {% endif %}
+                  </div>
                 </td>
                 <td style="display: flex; justify-content: flex-start;">
                   <div style="margin-right: 8px;">
@@ -162,6 +164,9 @@
                     </span>
                   </a> `
       div.firstChild.addEventListener('click',  (evt) => associateAjax(evt))
+      const badge = document.getElementById("badge-associate")
+      badge.removeChild(badge.firstChild)
+      badge.innerHTML = `<span class="tag is-medium is-warning">Não associado</span>`
     }
 
 	$('#listItems').on('click', '.deleteItem', function (e) {
