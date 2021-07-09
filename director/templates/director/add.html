@@ -18,7 +18,7 @@
             <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
               <div class="field">
-                <label class="label">Usuário:</label>
+                <label class="label">CPF do Usuário:</label>
                 <div class="control">
                   <input class="input" type="text" name="user" onkeypress="buscar(this)" required>
                 </div>
@@ -27,7 +27,19 @@
               <div class="field">
                 <label class="label">Cargo:</label>
                 <div class="control">
-                  <input class="input" type="text" name="office">
+                  <div class="select is-fullwidth">
+                    <select name="office" required>
+                      <option selected value="TI">TI</option>
+                      <option value="Presidente">Presidente</option>
+                      <option value="Vice Presidente">Vice Presidente</option>
+                      <option value="Secretária">Secretária</option>
+                      <option value="Diretor de Esportes">Diretor de Esportes</option>
+                      <option value="Diretor De E-Sports">História</option>
+                      <option value="Diretor Financeiro">Diretor Financeiro</option>
+                      <option value="Diretor de Eventos">Diretor de Eventos</option>
+                      <option value="Diretor de Marketing">Diretor de Marketing</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
