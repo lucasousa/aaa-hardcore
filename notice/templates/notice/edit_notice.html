@@ -46,10 +46,16 @@
               </div>
               
               <div class="field">
-                <label class="label">Texto:</label>
-                {{ notice_form }}
+                <label class="label">Texto: </label>
+                {{ notice_form.text }}
               </div>
-              
+
+              <div class="field">
+                <label class="label" style="display: inline;">Publicada: </label>
+                {{ notice_form.is_public }}
+              </div>
+              </br>
+
               <div class="field is-grouped">
                 <div class="control">
                   <button class="button is-link">Editar</button>

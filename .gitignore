@@ -128,3 +128,5 @@ gunicorn.conf.txt
 nginx.txt
 
 .idea
+media
+media_images

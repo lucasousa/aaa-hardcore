@@ -56,10 +56,15 @@
               <td>{{aux.title}}</td>
               <td>{{aux.published_date}}</td>
               <td>
+                <a href="{% url 'notice:copy_notice' aux.id %}" class="button is-primary">
+                  <span class="icon">
+                    <i class="fas fa-copy"></i>
+                  </span>                  
+                </a>
                 <a href="{% url 'notice:edit_notice' aux.id %}" class="button is-warning">
                   <span class="icon">
                     <i class="fas fa-edit"></i>
-                  </span>                  
+                  </span>
                 </a>
                 <a href="{% url 'notice:detail_notice' aux.slug %}" class="button is-info">
                   <span class="icon">

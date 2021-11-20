@@ -17,7 +17,7 @@ from product.models import Product
 def index(request):
     product = Product.objects.all().order_by("-id")[:4]
     partner = Partner.objects.all().order_by("-id")[:4]
-    notice = Notice.objects.all().order_by("-published_date")[:4]
+    notice = Notice.objects.all().order_by("-published_date").filter(is_public=True)[:4]
     res = {
         "objeto": product,
         "notice": notice,
@@ -142,7 +142,7 @@ def product_list(request):
 
 
 def notice_list(request):
-    object_list = Notice.objects.all().order_by("-published_date")
+    object_list = Notice.objects.all().order_by("-published_date").filter(is_public=True)
     res = {
         "notice": object_list,
     }

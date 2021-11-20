@@ -28,10 +28,18 @@ def new_notice(request):
         title = request.POST['title']
         text = request.POST['text']
         image = request.FILES['featured_image']
+
+        try:
+            request.POST['is_public']
+            is_public = True
+
+        except:
+            is_public = False
+
         athletic = AAA.objects.get(id=1)
         published_date = timezone.now()
         notice = Notice.objects.create(
-            title=title, featured_image=image, text=text, published_date=published_date, athletic=athletic)
+            title=title, is_public=is_public, featured_image=image, text=text, published_date=published_date, athletic=athletic)
         notice.save()
         messages.success(request, 'Notícia cadastrada com sucesso.')
         return HttpResponseRedirect(reverse('notice:index'))
@@ -48,11 +56,21 @@ def edit_notice(request, id):
     if request.POST:
         title = request.POST['title']
         text = request.POST['text']
+
         published_date = timezone.now()
         notice = Notice.objects.get(id=id)
+
+        try:
+            is_public = request.POST['is_public']
+            notice.is_public = True
+
+        except:
+            notice.is_public = False
+
         notice.title = title
         notice.text = text
         notice.published_date = timezone.now()
+
 
         if 'featured_image' in request.FILES:
             image = request.FILES['featured_image']
@@ -84,3 +102,19 @@ def delete_notice(request, id):
 
 def notice_detail(request, slug):
     return render(request, 'notice/notice_detail.html', {'objeto': Notice.objects.get(slug=slug)})
+
+
+@login_required
+def copy_notice(request, id):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('core:my-association'))
+
+
+    if request.method == "GET":
+        notice = Notice.objects.get(id=id)
+        notice.clone(id)
+        messages.success(request, 'Notícia copiada com sucesso.')
+        return HttpResponseRedirect(reverse('notice:index'))
+
+    messages.error(request, 'Notícia não copiada com sucesso.')
+    return HttpResponseRedirect(reverse('notice:index'))

@@ -6,4 +6,4 @@ class NoticeForm(forms.ModelForm):
     text = forms.CharField(widget=SummernoteWidget(attrs={'summernote': {'width': '100%', 'height': '400px'}}))
     class Meta:
         model = Notice
-        fields = ('text',)
+        fields = ('text', 'is_public',)
